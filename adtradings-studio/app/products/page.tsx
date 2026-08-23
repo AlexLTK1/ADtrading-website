@@ -29,20 +29,36 @@ export default function ProductsPage() {
             <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">Our range</span>
           </div>
         <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
-          {t.products.categories.map((category, i) => (
-            <div
-              key={category.title}
-              className={`border-t border-border py-10 md:py-14 md:pr-10 ${
-                i % 2 === 0 ? 'md:border-r' : 'md:pl-10'
-              } ${i < 2 ? 'md:border-t' : ''} ${i === 0 || i === 1 ? '' : ''}`}
-            >
-              <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="mt-4 text-2xl font-semibold tracking-tight">{category.title}</h3>
-              <p className="mt-3 max-w-md text-pretty leading-relaxed text-muted-foreground">
-                {category.body}
-              </p>
-            </div>
-          ))}
+          {t.products.categories.map((category, i) => {
+            const backgroundImages = [
+              '/images/premium-goods.png',
+              '/images/warehouse.png',
+              '/images/sourcing-market.png',
+              '/images/trade-route.png',
+            ]
+
+            return (
+              <article
+                key={category.title}
+                tabIndex={0}
+                className={`group relative isolate overflow-hidden border-t border-border px-0 py-10 transition-colors duration-500 hover:border-accent focus-visible:border-accent md:py-14 md:pr-10 md:pl-0 ${
+                  i % 2 === 0 ? 'md:border-r md:pr-10' : 'md:pl-10'
+                }`}
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 -z-10 bg-cover bg-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  style={{ backgroundImage: `url(${backgroundImages[i]})` }}
+                />
+                <div aria-hidden="true" className="absolute inset-0 -z-10 bg-primary/95 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+                <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary-foreground group-focus-visible:text-primary-foreground">{category.title}</h3>
+                <p className="mt-3 max-w-md text-pretty leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-primary-foreground/85 group-focus-visible:text-primary-foreground/85">
+                  {category.body}
+                </p>
+              </article>
+            )
+          })}
         </div>
 
         <Button render={<Link href="/contact" />} size="lg" className="mt-14">
