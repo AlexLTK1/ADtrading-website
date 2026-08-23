@@ -69,10 +69,6 @@ export function WhatWeDo() {
             >
               <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
-            <div
-              aria-hidden="true"
-              className="absolute inset-y-0 left-0 z-10 w-3 bg-background [clip-path:polygon(0_0,100%_0,68%_100%,0_100%)]"
-            />
             <div className="absolute inset-0 bg-primary/15" />
             <span className="sr-only">Video attribution: Anibal Trejo, CC BY 3.0, via Wikimedia Commons</span>
           </div>
