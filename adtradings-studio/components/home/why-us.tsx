@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Kicker } from '@/components/ui/kicker'
 import { useLocale } from '@/lib/i18n/language-provider'
 import { ScrollReveal } from '@/components/scroll-reveal'
@@ -18,7 +17,6 @@ const CLIP_END = 40
 
 export function WhyUs() {
   const { t } = useLocale()
-  const [videoReady, setVideoReady] = useState(false)
   const seekToCleanFrame = (video: HTMLVideoElement) => {
     if (video.currentTime < CLIP_START) video.currentTime = CLIP_START
   }
@@ -33,12 +31,11 @@ export function WhyUs() {
               muted
               playsInline
               preload="auto"
-              className={`h-full w-full scale-[1.22] object-cover object-center transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              className="h-full w-full scale-[1.22] object-cover object-center"
               onLoadedMetadata={(e) => seekToCleanFrame(e.currentTarget)}
               onLoadedData={(e) => seekToCleanFrame(e.currentTarget)}
               onCanPlay={(e) => {
                 seekToCleanFrame(e.currentTarget)
-                setVideoReady(true)
               }}
               onTimeUpdate={(e) => {
                 if (e.currentTarget.currentTime >= CLIP_END) {
