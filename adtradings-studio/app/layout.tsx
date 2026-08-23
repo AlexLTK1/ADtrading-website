@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Noto_Sans_SC, Noto_Sans_Thai } from 'next/font/google'
+import { Geist, Geist_Mono, Noto_Sans_SC, Noto_Sans_Thai, Oswald } from 'next/font/google'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { LanguageProvider } from '@/lib/i18n/language-provider'
@@ -28,6 +28,12 @@ const notoSansThai = Noto_Sans_Thai({
   variable: '--font-noto-thai',
 })
 
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-oswald',
+})
+
 export const metadata: Metadata = {
   title: 'Asia Direct Tradings LTD. — Premium Asian Sourcing, End to End',
   description:
@@ -48,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} ${notoSansThai.variable} bg-background`}
+      className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} ${notoSansThai.variable} ${oswald.variable} bg-background`}
     >
       <body className="antialiased font-sans">
         <LanguageProvider>
