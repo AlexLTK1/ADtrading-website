@@ -47,12 +47,11 @@ export function WhatWeDo() {
               playsInline
               preload="metadata"
               onLoadedMetadata={(event) => {
-                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
               }}
               onLoadedData={(event) => {
-                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
+                event.currentTarget.play()
               }}
               onSeeked={(event) => {
                 if (!videoReady) {
