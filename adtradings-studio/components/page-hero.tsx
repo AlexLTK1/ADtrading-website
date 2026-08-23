@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Kicker } from '@/components/ui/kicker'
 
 type PageHeroProps = {
   label: string
@@ -10,7 +11,7 @@ type PageHeroProps = {
 
 export function PageHero({ label, title, intro, image, imageAlt }: PageHeroProps) {
   return (
-    <section className="relative flex min-h-[70vh] items-end overflow-hidden">
+    <section className="relative flex min-h-[56vh] items-end overflow-hidden bg-navy">
       <Image
         src={image || '/placeholder.svg'}
         alt={imageAlt}
@@ -19,15 +20,19 @@ export function PageHero({ label, title, intro, image, imageAlt }: PageHeroProps
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/92 via-navy/60 to-navy/20" />
+      <div
+        aria-hidden
+        className="panel-diagonal absolute inset-y-0 right-0 hidden w-[45%] bg-gradient-to-br from-primary/40 via-deep-blue/30 to-transparent md:block"
+      />
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pb-24">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{label}</p>
-        <h1 className="mt-5 max-w-4xl text-balance font-mono text-4xl font-medium leading-[1.05] tracking-tight text-foreground md:text-6xl">
+        <Kicker tone="inverse" className="w-fit">
+          {label}
+        </Kicker>
+        <h1 className="mt-6 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
           {title}
         </h1>
-        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-          {intro}
-        </p>
+        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white/80">{intro}</p>
       </div>
     </section>
   )

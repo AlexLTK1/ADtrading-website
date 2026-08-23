@@ -20,25 +20,26 @@ export default function ServicesPage() {
         imageAlt="Asian trade market at dawn"
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-8 md:px-8">
-        <div className="flex flex-col divide-y divide-border border-b border-border">
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+        <div className="flex flex-col gap-5">
           {services.map((service) => {
             const Icon = service.icon
             return (
               <article
-                key={service.n}
-                className="grid gap-6 py-12 md:grid-cols-[auto_1fr_1.4fr] md:gap-12 md:py-16"
+                key={service.title}
+                className="grid gap-6 rounded-2xl border border-border bg-card p-8 shadow-sm md:grid-cols-[auto_1fr] md:gap-10 md:p-10"
               >
-                <span className="font-mono text-sm text-primary">{service.n}</span>
-                <div className="flex items-start gap-4">
-                  <Icon className="mt-1 h-6 w-6 shrink-0 text-primary" />
-                  <h2 className="text-balance font-mono text-2xl font-medium leading-tight tracking-tight md:text-3xl">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Icon className="size-6" />
+                </div>
+                <div>
+                  <h2 className="text-balance text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
                     {service.title}
                   </h2>
+                  <p className="mt-4 text-pretty text-lg leading-relaxed text-muted-foreground">
+                    {service.long}
+                  </p>
                 </div>
-                <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-                  {service.long}
-                </p>
               </article>
             )
           })}
