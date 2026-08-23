@@ -41,13 +41,19 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b',
-        floating ? 'border-transparent bg-transparent' : 'border-border bg-primary',
+        'fixed inset-x-0 top-0 z-50 border-b transition-[background-color,height] duration-300',
+        floating ? 'h-24 border-transparent bg-transparent' : 'h-16 border-border bg-primary',
       )}
     >
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        {/* On the homepage the logo is anchored to the hero wedge, rather than the
-            centered content container, so it stays locked to the upper-left panel. */}
+      {isHome && floating && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-background [clip-path:polygon(0_0,16%_0,7%_100%,0_100%)]"
+        />
+      )}
+      <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between px-5 lg:px-8">
+        {/* The large diagonal is part of the header only. The hero begins below it
+            as a separate rectangular section and never receives this shape. */}
         <Link
           href="/"
           className={cn(

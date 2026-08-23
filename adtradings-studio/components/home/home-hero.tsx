@@ -27,9 +27,8 @@ export function HomeHero() {
       <div className="absolute inset-0 bg-accent/70 mix-blend-multiply" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
 
-      {/* Compact white diagonal logo panel; the hero copy stays entirely on the photo. */}
-      <div className="absolute left-0 top-0 h-40 w-72 bg-background [clip-path:polygon(0_0,78%_0,0_100%)] md:h-48 md:w-[26rem]" />
-      <div className="absolute inset-y-0 left-0 w-[38%] bg-primary/25 [clip-path:polygon(0_0,20%_0,100%_100%,0_100%)]" />
+      {/* The hero remains a separate rectangular banner. Its geometry belongs only
+          to the fixed header above, so no diagonal panel cuts into this photo. */}
       <div className="absolute top-0 right-[8%] hidden h-1/3 w-px bg-accent/60 md:block" />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
