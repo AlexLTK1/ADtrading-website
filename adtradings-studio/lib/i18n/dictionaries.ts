@@ -443,11 +443,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     home: {
       hero: {
-        kicker: 'แวนคูเวอร์ — บริษัทการค้าเอเชีย',
+        kicker: 'แวนคูเวอร์ — บริษัทการค้��เอเชีย',
         title: 'จัดหาสินค้าเอเชียคุณภาพส��ง',
         titleAccent: 'แบบครบวงจร',
         subtitle:
-          'จัดจำหน่ายแบบขายส่ง จัดหาสินค้า ขยายตลาด ส่งออกกลับ และจัด��่งในเขตแวนคูเวอร์ — ดูแลโดยตัวแทนของเราที่ประจำอยู่ทั่วเอเชีย',
+          'จัดจำหน่ายแบบขายส���ง จัดหาสินค้า ขยายตลาด ส่งออกกลับ และจัด��่งในเขตแวนคูเวอร์ — ดูแลโดยตัวแทนของเราที่ประจำอยู่ทั่วเอเชีย',
         ctaPrimary: 'ติดต่อเรา',
         ctaSecondary: 'ดูบริการของเรา',
       },
@@ -544,7 +544,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         kicker: 'เรื่องราวของเรา',
         title: 'ก่อตั้งโดยคนที่อยากให้การค้าเป็นไปอย่างถูกต้อง',
         body: [
-          'Asia Direct Tradings LTD. ก่อตั้งขึ้นเพื่อลดช่องว่างระหว่างสิ่งที่ผู้ซื้อในอเมริกาเหนือได้รับการสัญญาไว้กับสิ่งที่ได้รับจริง ทั้งในด้านสภาพสินค้า มาตรฐาน และเวลา',
+          'Asia Direct Tradings LTD. ก่อตั้งขึ้นเพื่อลดช่องว่างระหว่างสิ่งที่ผู้ซื้อในอเมริกาเหนือได้รับการสัญญาไว้��ับสิ่งที่ได้รับจริง ทั้งในด้านสภาพสินค้า มาตรฐาน และเวลา',
           'แทนที่จะเป็นนายหน้าที่ทำงานจากระยะไกล เราส่งตัวแทนของเราเองไปประจำทั่วเอเชียเพื่อตรวจสอบซัพพลายเออร์โดยตรง เจรจาเงื่อนไข และดูแลการขนส่งจากต้นทางถึงปลายทาง',
           'ปัจจุบันทีมเดียวกันนี้ดูแลการจัดจำหน่ายแบบขายส่ง การจัดหาสินค้า การขยายตลาดให้แบรนด์เอเชีย การส่งออกกลับไปเอเชีย และการจัดส่งไมล์สุดท้ายทั่วเขตแวนคูเวอร์',
         ],
@@ -602,8 +602,42 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
 }
 
-// Traditional Chinese and Japanese use the complete content shape immediately;
-// localized copy can be expanded independently without changing the UI contract.
-dictionaries.tc = dictionaries.zh
+// Traditional Chinese and Japanese dictionaries keep the same complete shape
+// while providing localized copy for every user-facing section.
+dictionaries.tc = {
+  ...dictionaries.zh,
+  nav: { home: '首頁', services: '服務', products: '產品', about: '關於我們', contact: '聯絡我們', getInTouch: '聯絡我們' },
+  home: {
+    ...dictionaries.zh.home,
+    hero: { kicker: '溫哥華 — 亞洲貿易商行', title: '高端亞洲貨源，', titleAccent: '一站式服務。', subtitle: '批發供應、貨源採購、市場拓展、反向出口與溫哥華本地配送——由駐紮亞洲各地的代理團隊全程負責。', ctaPrimary: '聯絡我們', ctaSecondary: '查看服務' },
+    network: { kicker: '我們的網絡', title: '代理團隊駐紮亞洲，貨源直達北美。' },
+    whyUs: { kicker: '為何選擇 Asia Direct', title: '一個團隊，從工廠到您的門口。', items: [{ n: '01', title: '實地把關', body: '我們的代理親赴亞洲各地實地考察供應商——不是轉達二手資訊的中間商。' }, { n: '02', title: '合規先行', body: '海關、CFIA 與 FDA 標籤合規工作，在貨物抵達您的倉庫之前已全部處理妥當。' }, { n: '03', title: '一個團隊，雙向貿易', body: '同一團隊同時負責進口貨源與對亞洲的反向出口，避免在兩個供應商之間出現脫節。' }] },
+    whatWeDo: { kicker: '我們的業務', title: '連接亞洲貨源與北美市場的貿易基礎設施。', body: '我們是亞洲供應商與北美買家之間的連接層——貨源採購、合規、運輸、倉儲與最後一公里配送，均由同一團隊統籌協調。' },
+    servicesPreview: { kicker: '服務', title: '五種貨物流通方式，及隨之而來的貿易機會。', cta: '查看全部服務' },
+    cta: { title: '準備好開始貿易了嗎？', body: '告訴我們您需要採購、銷售或運輸的產品——我們的團隊將在一個工作日內給出方案。', ctaPrimary: '聯絡我們', ctaSecondary: '查看我們的產品' },
+  },
+  services: { ...dictionaries.zh.services, hero: { kicker: '服務', title: '五種貨物流通方式', subtitle: '從批發供應到反向出口，每一項服務都由同一團隊負責——代理駐紮亞洲各地，溫哥華本地團隊隨時支援。' }, learnMore: '了解更多' },
+  products: { ...dictionaries.zh.products, hero: { kicker: '產品', title: '我們的產品', subtitle: '由品類專家精選的高端亞洲乾貨與特色食品，進口即可上架，價格適合批發。' }, cta: { title: '正在尋找特定產品？', body: '即使目錄中暫未列出，我們的採購團隊大多也能找到。', button: '聯絡我們的採購團隊' } },
+  about: { ...dictionaries.zh.about, hero: { kicker: '關於我們', title: '以實地存在，而非紙面承諾，建立的貿易商行。', subtitle: 'Asia Direct Tradings LTD. 是一家總部位於溫哥華的貿易商行，連接亞洲供應商與北美買家。' }, story: { ...dictionaries.zh.about.story, kicker: '我們的故事', title: '由希望把貿易做得踏實的人創辦。' }, process: { ...dictionaries.zh.about.process, kicker: '合作方式', title: '三個步驟，一個團隊全程負責。' } },
+  contact: { ...dictionaries.zh.contact, hero: { kicker: '聯絡我們', title: '讓我們談談貿易。', subtitle: '告訴我們您需要採購、銷售或運輸的產品——我們的團隊將在一個工作日內給出方案。' }, infoTitle: '直接聯絡我們', formTitle: '發送訊息', form: { name: '姓名', email: '電子郵件', company: '公司', message: '留言', submit: '發送訊息', submitting: '發送中…', success: '感謝您的留言，我們已收到並將盡快與您聯絡。', error: '出現問題，請重試或直接寄送電子郵件給我們。' } },
+  footer: { ...dictionaries.zh.footer, explore: '快速導覽', contact: '聯絡方式', strapline: '高端亞洲貨源——零食、食品與日用品。' },
+}
 
-dictionaries.ja = dictionaries.en
+dictionaries.ja = {
+  ...dictionaries.en,
+  nav: { home: 'ホーム', services: 'サービス', products: '取扱商品', about: '会社案内', contact: 'お問い合わせ', getInTouch: 'お問い合わせ' },
+  home: {
+    ...dictionaries.en.home,
+    hero: { kicker: 'バンクーバー — アジア貿易商社', title: '上質なアジア商品を、', titleAccent: '一貫してお届け。', subtitle: '卸売供給、商品調達、市場参入、アジアへの逆輸出、バンクーバー地域配送まで。アジア各地のスタッフが一貫して対応します。', ctaPrimary: 'お問い合わせ', ctaSecondary: 'サービスを見る' },
+    network: { kicker: '私たちのネットワーク', title: 'アジア各地のスタッフが、北米へ商品を届けます。' },
+    whyUs: { kicker: 'Asia Directが選ばれる理由', title: '工場からお客様のもとまで、一つの窓口で。', items: [{ n: '01', title: '現地スタッフが確認', body: 'アジア各地のスタッフが自ら仕入先を訪問し、現地で確認します。' }, { n: '02', title: 'コンプライアンス対応', body: '通関、CFIA、FDAの表示基準を倉庫到着前に確認します。' }, { n: '03', title: '一つの窓口で双方向', body: '輸入調達からアジアへの逆輸出まで、同じチームが管理します。' }] },
+    whatWeDo: { kicker: '事業内容', title: 'アジアの商品を北米へ届ける貿易インフラ。', body: 'アジアの供給者と北米の買い手をつなぎ、調達、法令対応、輸送、保管、ラストマイル配送まで一つの窓口で調整します。' },
+    servicesPreview: { kicker: 'サービス', title: '商品を動かし、その先の取引まで支える五つの方法。', cta: 'サービス一覧を見る' },
+    cta: { title: '商品を動かす準備はできましたか？', body: '調達、販売、輸送したい商品をお聞かせください。1営業日以内にご提案します。', ctaPrimary: 'お問い合わせ', ctaSecondary: '取扱商品を見る' },
+  },
+  services: { ...dictionaries.en.services, hero: { kicker: 'サービス', title: '商品を動かす五つの方法', subtitle: '卸売供給から逆輸出まで、アジア各地のスタッフとバンクーバーのチームが一つの窓口で対応します。' } },
+  products: { ...dictionaries.en.products, hero: { kicker: '取扱商品', title: '私たちが扱う商品', subtitle: '専門スタッフが選んだ上質なアジアの乾物・食品を、卸売向けに輸入対応済みでご提供します。' }, cta: { title: 'お探しの商品はありますか？', body: 'カタログにない商品も、調達チームが見つけられる可能性があります。', button: '調達チームに相談する' } },
+  about: { ...dictionaries.en.about, hero: { kicker: '会社案内', title: '書類ではなく、現地での存在感から生まれた貿易商社。', subtitle: 'Asia Direct Tradings LTD. は、アジアの供給者と北米の買い手をつなぐバンクーバーの貿易商社です。' }, story: { ...dictionaries.en.about.story, kicker: '私たちの歩み', title: '正しい貿易を実現したい人々によって設立されました。' }, process: { ...dictionaries.en.about.process, kicker: '仕事の進め方', title: '三つのステップ、一つの責任ある窓口。' } },
+  contact: { ...dictionaries.en.contact, hero: { kicker: 'お問い合わせ', title: '貿易についてお話ししましょう。', subtitle: '調達、販売、輸送したい商品をお聞かせください。1営業日以内にご提案します。' }, infoTitle: '直接お問い合わせ', formTitle: 'メッセージを送る', form: { name: 'お名前', email: 'メールアドレス', company: '会社名', message: 'メッセージ', submit: '送信する', submitting: '送信中…', success: 'お問い合わせありがとうございます。確認後、担当者よりご連絡します。', error: '問題が発生しました。もう一度お試しいただくか、直接メールでお問い合わせください。' } },
+  footer: { ...dictionaries.en.footer, explore: 'メニュー', contact: 'お問い合わせ', strapline: '上質なアジア商品を一貫して調達 — 食品・スナック・日用品。' },
+}
