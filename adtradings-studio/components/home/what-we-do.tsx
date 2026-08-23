@@ -37,7 +37,7 @@ export function WhatWeDo() {
           </ScrollReveal>
         </div>
         <ScrollReveal variant="right" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
-          <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
+          <div className="clip-diagonal-r absolute inset-0 overflow-hidden">
             <video
               autoPlay
               loop
