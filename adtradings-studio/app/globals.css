@@ -48,61 +48,6 @@
   }
 }
 
-@keyframes hero-orbit-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hero-orbit {
-  border: 1px solid color-mix(in srgb, var(--primary-foreground) 18%, transparent);
-  border-radius: 9999px;
-  transform: translateY(-50%);
-  animation: hero-orbit-spin 42s linear infinite;
-}
-
-.hero-orbit__ring,
-.hero-orbit__core {
-  position: absolute;
-  display: block;
-  border-radius: 9999px;
-}
-
-.hero-orbit__ring {
-  inset: 8%;
-  border: 1px dashed color-mix(in srgb, var(--primary-foreground) 24%, transparent);
-}
-
-.hero-orbit__ring--middle {
-  inset: 22%;
-  border-style: dotted;
-  border-color: color-mix(in srgb, var(--highlight) 42%, transparent);
-  animation: hero-orbit-spin 24s linear infinite reverse;
-}
-
-.hero-orbit__ring--inner {
-  inset: 37%;
-  border: 1px solid color-mix(in srgb, var(--primary-foreground) 22%, transparent);
-  animation: hero-orbit-spin 16s linear infinite;
-}
-
-.hero-orbit__core {
-  inset: 48%;
-  background: color-mix(in srgb, var(--highlight) 62%, transparent);
-  box-shadow: 0 0 2rem color-mix(in srgb, var(--highlight) 35%, transparent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-orbit,
-  .hero-orbit__ring--middle,
-  .hero-orbit__ring--inner {
-    animation: none;
-  }
-}
-
 :root {
   color-scheme: light;
 

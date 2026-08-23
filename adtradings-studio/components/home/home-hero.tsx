@@ -6,6 +6,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Kicker } from '@/components/ui/kicker'
 import { useLocale } from '@/lib/i18n/language-provider'
+import { OptimusSphere } from '@/components/home/optimus-sphere'
 
 export function HomeHero() {
   const { t } = useLocale()
@@ -27,11 +28,8 @@ export function HomeHero() {
       <div className="absolute inset-0 bg-accent/70 mix-blend-multiply" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
 
-      <div aria-hidden="true" className="hero-orbit pointer-events-none absolute right-[-8rem] top-1/2 z-0 h-[22rem] w-[22rem] -translate-y-1/2 opacity-45 sm:right-[-4rem] sm:h-[28rem] sm:w-[28rem] lg:right-[7%] lg:h-[34rem] lg:w-[34rem]">
-        <span className="hero-orbit__ring hero-orbit__ring--outer" />
-        <span className="hero-orbit__ring hero-orbit__ring--middle" />
-        <span className="hero-orbit__ring hero-orbit__ring--inner" />
-        <span className="hero-orbit__core" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-8rem] top-1/2 z-0 h-[20rem] w-[20rem] -translate-y-1/2 opacity-60 sm:right-[-2rem] sm:h-[26rem] sm:w-[26rem] lg:right-[6%] lg:h-[31rem] lg:w-[31rem]">
+        <OptimusSphere />
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
