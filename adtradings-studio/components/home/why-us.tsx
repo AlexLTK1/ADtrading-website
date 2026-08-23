@@ -66,7 +66,7 @@ export function WhyUs() {
             </ScrollReveal>
           </div>
 
-          <div className="relative z-10 order-1 mt-24 flex min-h-0 flex-col justify-start md:order-2 md:mt-16 md:flex-1">
+          <div className="relative z-10 order-1 mt-24 flex min-h-0 flex-col justify-start md:order-2 md:mt-10 md:flex-1">
           {t.home.whyUs.items.map((point, i) => (
             <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0 md:flex-1">
               <div
