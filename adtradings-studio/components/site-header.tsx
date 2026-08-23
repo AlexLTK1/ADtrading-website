@@ -129,8 +129,10 @@ export function SiteHeader() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             className={cn(
-              'inline-flex h-9 w-9 shrink-0 items-center justify-center xl:hidden',
-              floating ? 'text-primary-foreground' : 'text-foreground',
+              'inline-flex size-10 shrink-0 items-center justify-center border-2 transition-colors xl:hidden',
+              floating
+                ? 'border-primary-foreground bg-primary/90 text-primary-foreground hover:bg-highlight hover:text-primary'
+                : 'border-primary-foreground bg-primary text-primary-foreground hover:bg-highlight hover:text-primary',
             )}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
