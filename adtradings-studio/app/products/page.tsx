@@ -10,7 +10,12 @@ import { Button } from '@/components/ui/button'
 import { useLocale } from '@/lib/i18n/language-provider'
 
 export default function ProductsPage() {
-  const { t } = useLocale()
+  const { locale, t } = useLocale()
+  const sectionTitle = locale === 'tc' ? '精選品類，悉心採購。' : locale === 'ja' ? '厳選した商品を、丁寧に調達。' : locale === 'zh' ? '精选品类，悉心采购。' : locale === 'th' ? 'คัดสรรสินค้า จัดหาอย่างใส่ใจ' : 'Selected categories, sourced with care.'
+  const sectionKicker = locale === 'tc' ? '我們的產品範圍' : locale === 'ja' ? '取扱商品' : locale === 'zh' ? '我们的产品范围' : locale === 'th' ? 'สินค้าของเรา' : 'Our range'
+  const readyKicker = locale === 'tc' ? '進口即售，符合規範' : locale === 'ja' ? '輸入対応済み、法令準拠' : locale === 'zh' ? '进口即售，符合规范' : locale === 'th' ? 'พร้อมนำเข้าและเป็นไปตามมาตรฐาน' : 'Import-ready, compliant'
+  const readyTitle = locale === 'tc' ? '每批貨物，抵達即可銷售。' : locale === 'ja' ? '届いたその日から販売できます。' : locale === 'zh' ? '每批货物，抵达即可销售。' : locale === 'th' ? 'สินค้าทุก批พร้อมจำหน่าย' : 'Everything lands ready to sell.'
+  const readyBody = locale === 'tc' ? '我們在內部處理供應商審核、海運、清關及雙語合規標籤。抵達溫哥華的貨物，正是您核准的內容——無論是一條產品線還是整個貨櫃。' : locale === 'ja' ? '仕入先の確認、海上輸送、通関、二言語の表示対応まで、すべて社内で管理します。バンクーバーに届く商品は、単品でもコンテナ単位でも、お客様が承認した内容そのものです。' : locale === 'zh' ? '我们在内部处理供应商审核、海运、清关及双语合规标签。抵达温哥华的货物，正是您批准的内容——无论是一条产品线还是整柜。' : locale === 'th' ? 'เราดูแลการตรวจสอบซัพพลายเออร์ การขนส่งทางทะเล พิธีการศุลกากร และฉลากสองภาษาให้ครบถ้วน สินค้าที่ถึงแวนคูเวอร์ตรงตามที่คุณอนุมัติ ไม่ว่าจะเป็นสินค้าเพียงรายการเดียวหรือตู้คอนเทนเนอร์เต็มตู้' : 'We handle supplier vetting, ocean freight, customs clearance and bilingual compliance labelling in-house. What arrives in Vancouver is exactly what you approved — whether it\'s a single line or a full container.'
 
   return (
     <main>
@@ -25,8 +30,8 @@ export default function ProductsPage() {
       <section className="bg-muted">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-12 flex items-end justify-between gap-6">
-            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">Selected categories, sourced with care.</h2>
-            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">Our range</span>
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">{sectionTitle}</h2>
+            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">{sectionKicker}</span>
           </div>
         <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
           {t.products.categories.map((category, i) => {
@@ -76,15 +81,13 @@ export default function ProductsPage() {
           <div className="absolute inset-0 hidden bg-primary md:block" />
           <div className="relative flex flex-col justify-center bg-primary px-5 py-16 text-primary-foreground md:px-14 md:py-24">
             <Kicker tone="inverse" className="w-fit">
-              Import-ready, compliant
+              {readyKicker}
             </Kicker>
             <h2 className="mt-5 text-balance text-3xl leading-[1.12] font-semibold tracking-tight md:text-4xl">
-              Everything lands ready to sell.
+              {readyTitle}
             </h2>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/80">
-              We handle supplier vetting, ocean freight, customs clearance and bilingual compliance
-              labelling in-house. What arrives in Vancouver is exactly what you approved — whether
-              it&apos;s a single line or a full container.
+              {readyBody}
             </p>
           </div>
           <div className="relative min-h-[360px] md:min-h-[520px]">

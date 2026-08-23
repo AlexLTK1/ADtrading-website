@@ -6,7 +6,9 @@ import { services } from '@/lib/services'
 import { useLocale } from '@/lib/i18n/language-provider'
 
 export default function ServicesPage() {
-  const { t } = useLocale()
+  const { locale, t } = useLocale()
+  const sectionTitle = locale === 'tc' ? '為完整貿易旅程而設' : locale === 'ja' ? '貿易の旅全体を支える仕組み' : locale === 'zh' ? '为完整贸易旅程而设' : locale === 'th' ? 'รองรับทุกขั้นตอนของการค้า' : 'Built for the full trade journey.'
+  const sectionKicker = locale === 'tc' ? '我們的業務' : locale === 'ja' ? '事業内容' : locale === 'zh' ? '我们的业务' : locale === 'th' ? 'สิ่งที่เราทำ' : 'What we do'
 
   return (
     <main>
@@ -21,8 +23,8 @@ export default function ServicesPage() {
       <section className="bg-muted">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between gap-6">
-            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">Built for the full trade journey.</h2>
-            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">What we do</span>
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">{sectionTitle}</h2>
+            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">{sectionKicker}</span>
           </div>
           <div className="flex flex-col">
             {services.map((service, i) => {
