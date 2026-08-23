@@ -13,21 +13,16 @@ const countries = [
 export function CountryMarquee() {
   const items = [...countries, ...countries]
   return (
-    <div
-      className="overflow-hidden bg-secondary py-6"
-      style={{
-        maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-        WebkitMaskImage:
-          'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-      }}
-    >
-      <div className="flex w-max animate-marquee items-center gap-3">
+    <div className="overflow-hidden border-y border-border bg-card py-5">
+      <div className="flex w-max animate-marquee items-center">
         {items.map((country, i) => (
-          <span
-            key={i}
-            className="rounded-full border border-border/70 bg-background px-4 py-1.5 text-sm font-medium text-foreground/70"
-          >
-            {country}
+          <span key={i} className="flex items-center">
+            <span className="px-6 font-mono text-sm uppercase tracking-[0.25em] text-muted-foreground">
+              {country}
+            </span>
+            <span className="text-primary" aria-hidden="true">
+              &middot;
+            </span>
           </span>
         ))}
       </div>

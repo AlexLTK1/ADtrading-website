@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Kicker } from '@/components/ui/kicker'
 
 type CtaBandProps = {
   eyebrow?: string
@@ -19,28 +17,26 @@ export function CtaBand({
   cta = 'Start an inquiry',
 }: CtaBandProps) {
   return (
-    <section className="bg-primary">
+    <section className="border-y border-border bg-card">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 md:flex-row md:items-end md:justify-between md:px-8 md:py-24">
         <div className="max-w-2xl">
           {eyebrow && (
-            <Kicker tone="inverse" className="w-fit">
-              {eyebrow}
-            </Kicker>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">{eyebrow}</p>
           )}
-          <h2 className="mt-5 text-balance text-3xl font-semibold leading-tight tracking-tight text-primary-foreground md:text-5xl">
+          <h2 className="mt-4 text-balance font-mono text-3xl font-medium leading-tight tracking-tight md:text-5xl">
             {title}
           </h2>
-          <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/75">
+          <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
             {body}
           </p>
         </div>
-        <Button render={<Link href={href} />} size="xl" variant="inverse" className="shrink-0">
+        <Link
+          href={href}
+          className="group inline-flex shrink-0 items-center gap-2 rounded-sm bg-primary px-7 py-4 font-mono text-sm uppercase tracking-[0.15em] text-primary-foreground transition-colors hover:bg-primary/90"
+        >
           {cta}
-          <ArrowUpRight
-            data-icon="inline-end"
-            className="transition-transform group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5"
-          />
-        </Button>
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
       </div>
     </section>
   )
