@@ -72,7 +72,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-4 lg:ml-auto xl:flex xl:gap-8">
+        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-4 lg:ml-auto xl:flex xl:gap-8 xl:pr-5">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -91,7 +91,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-3 xl:gap-4">
-          <div className="hidden shrink-0 items-center gap-1 whitespace-nowrap font-mono text-xs tracking-wider uppercase xl:flex">
+          <div className="hidden shrink-0 items-center gap-1 rounded-sm border border-primary-foreground/30 bg-primary-foreground/10 px-2 py-1 whitespace-nowrap font-mono text-xs tracking-wider uppercase xl:ml-2 xl:flex">
             {locales.map((loc, i) => (
               <span key={loc} className="flex items-center">
                 {i > 0 && (
@@ -106,7 +106,7 @@ export function SiteHeader() {
                   className={cn(
                     'transition-colors',
                     locale === loc
-                      ? 'text-accent'
+                      ? 'rounded-sm bg-accent px-1.5 py-0.5 font-semibold text-primary'
                       : floating
                         ? 'text-primary-foreground/80 hover:text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground',
@@ -165,7 +165,7 @@ export function SiteHeader() {
                   className={cn(
                     'transition-colors',
                     locale === loc
-                      ? 'text-accent'
+                      ? 'rounded-sm bg-accent px-1.5 py-0.5 font-semibold text-primary'
                       : 'text-muted-foreground hover:text-foreground',
                   )}
                 >
