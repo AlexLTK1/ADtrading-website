@@ -39,19 +39,26 @@ export function WhatWeDo() {
           </ScrollReveal>
         </div>
         <ScrollReveal variant="right" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
-          <div className="clip-diagonal-r absolute inset-1 overflow-hidden">
+          <div className="clip-diagonal-r absolute inset-0 overflow-hidden">
             <video
               autoPlay
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               onLoadedMetadata={(event) => {
+                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
               }}
-              onCanPlay={(event) => {
-                setVideoReady(true)
-                event.currentTarget.play().catch(() => {})
+              onLoadedData={(event) => {
+                event.currentTarget.pause()
+                event.currentTarget.currentTime = 0.5
+              }}
+              onSeeked={(event) => {
+                if (!videoReady) {
+                  event.currentTarget.play().catch(() => {})
+                  setVideoReady(true)
+                }
               }}
               onTimeUpdate={(event) => {
                 if (event.currentTarget.currentTime < 0.5) {
@@ -62,7 +69,10 @@ export function WhatWeDo() {
             >
               <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-3 bg-background [clip-path:polygon(0_0,100%_0,55%_100%,0_100%)]" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 z-10 w-3 bg-background [clip-path:polygon(0_0,100%_0,68%_100%,0_100%)]"
+            />
             <div className="absolute inset-0 bg-primary/15" />
             <span className="sr-only">Video attribution: Anibal Trejo, CC BY 3.0, via Wikimedia Commons</span>
           </div>
