@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import { ArrowUpRight, Check, AlertCircle, Loader2 } from 'lucide-react'
 import { submitInquiry } from '@/app/actions'
 import { Button } from '@/components/ui/button'
+import { useLocale } from '@/lib/i18n/language-provider'
 
 const inquiryTypes = [
   'B2B wholesale supply',
@@ -18,6 +19,7 @@ const fieldClass =
 const labelClass = 'text-sm font-medium text-foreground'
 
 export function ContactForm() {
+  const { t } = useLocale()
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
@@ -31,26 +33,18 @@ export function ContactForm() {
       if (result.ok) {
         setSubmitted(true)
       } else {
-        setError(result.error)
+        setError(t.contact.form.error)
       }
     })
   }
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-start rounded-2xl border border-border bg-card p-8 shadow-sm md:p-10">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+      <div className="flex flex-col items-start border border-border bg-card p-8 shadow-sm md:p-10">
+        <div className="flex h-12 w-12 items-center justify-center bg-primary text-primary-foreground">
           <Check className="h-6 w-6" />
         </div>
-        <h2 className="mt-6 text-2xl font-semibold tracking-tight">Inquiry received.</h2>
-        <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-          Thank you — a consultant will reply within one business day. For anything urgent, call us
-          at{' '}
-          <a href="tel:+17783215858" className="font-medium text-primary">
-            +1 (778) 321-5858
-          </a>
-          .
-        </p>
+        <h2 className="mt-6 text-2xl font-semibold tracking-tight">{t.contact.form.success}</h2>
         <button
           type="button"
           onClick={() => {
@@ -59,7 +53,7 @@ export function ContactForm() {
           }}
           className="mt-8 text-sm font-semibold text-primary"
         >
-          Send another inquiry
+          {t.contact.formTitle}
         </button>
       </div>
     )
@@ -70,19 +64,19 @@ export function ContactForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="grid gap-2">
           <label htmlFor="name" className={labelClass}>
-            Name
+            {t.contact.form.name}
           </label>
-          <input id="name" name="name" required className={fieldClass} placeholder="Your name" />
+          <input id="name" name="name" required className={fieldClass} placeholder={t.contact.form.name} />
         </div>
         <div className="grid gap-2">
           <label htmlFor="company" className={labelClass}>
-            Company
+            {t.contact.form.company}
           </label>
           <input
             id="company"
             name="company"
             className={fieldClass}
-            placeholder="Company (optional)"
+            placeholder={t.contact.form.company}
           />
         </div>
       </div>
@@ -90,7 +84,7 @@ export function ContactForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="grid gap-2">
           <label htmlFor="email" className={labelClass}>
-            Email
+            {t.contact.form.email}
           </label>
           <input
             id="email"
@@ -133,7 +127,7 @@ export function ContactForm() {
 
       <div className="grid gap-2">
         <label htmlFor="message" className={labelClass}>
-          Tell us the product and the market
+          {t.contact.form.message}
         </label>
         <textarea
           id="message"
@@ -141,14 +135,14 @@ export function ContactForm() {
           required
           rows={5}
           className={`${fieldClass} resize-none`}
-          placeholder="What would you like to source, supply or ship?"
+          placeholder={t.contact.form.message}
         />
       </div>
 
       {error && (
         <div
           role="alert"
-          className="flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+          className="flex items-start gap-2 border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
         >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
@@ -158,12 +152,12 @@ export function ContactForm() {
       <Button type="submit" size="lg" disabled={isPending} className="group w-full sm:w-fit">
         {isPending ? (
           <>
-            Sending
+            {t.contact.form.submitting}
             <Loader2 className="size-4 animate-spin" />
           </>
         ) : (
           <>
-            Start an inquiry
+            {t.contact.form.submit}
             <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </>
         )}

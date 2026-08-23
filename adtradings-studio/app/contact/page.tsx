@@ -1,14 +1,10 @@
-import type { Metadata } from 'next'
+'use client'
+
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { CountryMarquee } from '@/components/country-marquee'
 import { Kicker } from '@/components/ui/kicker'
-
-export const metadata: Metadata = {
-  title: 'Contact — Asia Direct Tradings LTD.',
-  description:
-    'Tell us the product and the market — our agents reply within one business day. Wholesale and consumer retail welcome.',
-}
+import { useLocale } from '@/lib/i18n/language-provider'
 
 const details = [
   { icon: MapPin, label: 'Office', value: 'Richmond, BC, Canada' },
@@ -18,29 +14,33 @@ const details = [
 ]
 
 export default function ContactPage() {
+  const { t } = useLocale()
+
   return (
     <main>
-      <section className="mx-auto max-w-7xl px-5 pb-16 pt-36 md:px-8 md:pb-24 md:pt-44">
-        <Kicker>Start an inquiry</Kicker>
-        <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
-          Tell us the product. We will source it the right way.
+      <section className="mx-auto max-w-7xl px-5 pt-36 pb-16 md:px-8 md:pt-44 md:pb-24">
+        <Kicker>{t.contact.hero.kicker}</Kicker>
+        <h1 className="mt-5 max-w-3xl text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-6xl">
+          {t.contact.hero.title}
         </h1>
         <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-          Wholesale buyers, retail shoppers and Asian brands — one form, one business day, one
-          seamless experience.
+          {t.contact.hero.subtitle}
         </p>
 
         <div className="mt-16 grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
-          <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm md:p-7">
+          <div className="flex flex-col gap-4 border border-border bg-card p-6 shadow-sm md:p-7">
+            <p className="text-xs font-medium tracking-[0.1em] text-muted-foreground uppercase">
+              {t.contact.infoTitle}
+            </p>
             {details.map((detail) => {
               const Icon = detail.icon
               return (
                 <div key={detail.label} className="flex items-start gap-4">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <div className="flex size-10 shrink-0 items-center justify-center bg-primary/10 text-primary">
                     <Icon className="size-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    <p className="text-xs font-medium tracking-[0.1em] text-muted-foreground uppercase">
                       {detail.label}
                     </p>
                     {detail.href ? (

@@ -1,47 +1,27 @@
-import type { Metadata } from 'next'
+'use client'
+
 import Image from 'next/image'
-import { PackageSearch, ShieldCheck, Truck } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 import { CtaBand } from '@/components/cta-band'
 import { Kicker } from '@/components/ui/kicker'
-
-export const metadata: Metadata = {
-  title: 'About — Asia Direct Tradings LTD.',
-  description:
-    'A Vancouver-rooted trade house with sourcing agents stationed across Asia. We source, vet, import and deliver premium Asian goods so you never have to.',
-}
-
-const steps = [
-  {
-    icon: PackageSearch,
-    title: 'We find and vet',
-    body: 'You tell us what you want — a specific snack, a food line, or general goods. Our agents on the ground in Asia track it down, visit the supplier in person and confirm quality before anything is committed. Nothing is sourced sight unseen.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'We import and clear',
-    body: 'We arrange ocean freight, manage customs clearance and handle bilingual compliance labelling to CFIA and FDA standards. The paperwork, the logistics and the regulatory details are ours to solve, not yours.',
-  },
-  {
-    icon: Truck,
-    title: 'We deliver, end to end',
-    body: 'What lands in Vancouver is exactly what you approved, ready to sell or use. From first quote to final delivery, one team owns your file — so there is a single number to call and a single answer you can trust.',
-  },
-]
+import { useLocale } from '@/lib/i18n/language-provider'
 
 export default function AboutPage() {
+  const { t } = useLocale()
+
   return (
     <main>
       <PageHero
-        label="Our story"
-        title="A trade house rooted in Vancouver."
-        intro="Asia Direct Tradings LTD. connects North American buyers with the finest of Asia. We are small enough to answer the phone and expert enough to clear customs — with sourcing agents stationed across Asia and one team owning every step."
+        label={t.about.hero.kicker}
+        title={t.about.hero.title}
+        intro={t.about.hero.subtitle}
         image="/images/about-vancouver.png"
         imageAlt="Vancouver harbour and port at golden hour with coastal mountains"
       />
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-16 md:px-8 md:py-28">
-        <div className="relative min-h-[340px] overflow-hidden rounded-2xl shadow-sm md:min-h-[560px]">
+        <div className="relative min-h-[340px] overflow-hidden shadow-sm md:min-h-[560px]">
+          <div className="clip-panel-r absolute inset-0 z-10 hidden bg-primary/10 md:block" />
           <Image
             src="/images/about-inspection.png"
             alt="A sourcing agent inspecting packaged goods at an Asian supplier"
@@ -51,58 +31,49 @@ export default function AboutPage() {
           />
         </div>
         <div>
-          <Kicker className="w-fit">Who we are</Kicker>
-          <h2 className="mt-6 text-balance text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
-            People at the source, not just a supplier list.
+          <Kicker className="w-fit">{t.about.story.kicker}</Kicker>
+          <h2 className="mt-6 text-balance text-3xl leading-[1.12] font-semibold tracking-tight md:text-4xl">
+            {t.about.story.title}
           </h2>
           <div className="mt-7 space-y-5 text-pretty text-lg leading-relaxed text-muted-foreground">
-            <p>
-              We are a trade house, not a marketplace. That means real people standing in real
-              warehouses across Asia, choosing what makes the cut. Snacks and food are our
-              specialty — but if it comes from Asia, we can likely source it.
-            </p>
-            <p>
-              Because we sit between the factory floor and your front door, buyers get one
-              accountable team instead of a chain of middlemen. Tell us what you want to buy; we
-              handle sourcing, vetting, freight, customs, labelling and delivery so you can focus on
-              selling.
-            </p>
+            {t.about.story.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="bg-card">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <Kicker className="w-fit">What we do</Kicker>
-          <h2 className="mt-6 max-w-2xl text-balance text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
-            One team, from first quote to store door.
+          <Kicker className="w-fit">{t.about.process.kicker}</Kicker>
+          <h2 className="mt-6 max-w-2xl text-balance text-3xl leading-[1.12] font-semibold tracking-tight md:text-4xl">
+            {t.about.process.title}
           </h2>
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {steps.map((step) => {
-              const Icon = step.icon
-              return (
-                <div
-                  key={step.title}
-                  className="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm md:p-10"
-                >
-                  <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Icon className="size-5" />
-                  </div>
-                  <h3 className="mt-8 text-xl font-semibold tracking-tight">{step.title}</h3>
-                  <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+          <div className="mt-14 flex flex-col">
+            {t.about.process.steps.map((step, i) => (
+              <div
+                key={step.title}
+                className={`grid gap-6 border-t border-border py-10 md:grid-cols-[auto_1fr] md:gap-12 ${
+                  i === 0 ? 'border-t-0 pt-0' : ''
+                }`}
+              >
+                <span className="shrink-0 font-mono text-sm text-accent">{step.n}</span>
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight">{step.title}</h3>
+                  <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <CtaBand
-        eyebrow="Let's talk trade"
-        title="Work with a team that owns every step."
-        body="Tell us what you're looking to source or sell, and we'll reply within one business day."
+        title={t.home.cta.title}
+        body={t.home.cta.body}
+        cta={t.home.cta.ctaPrimary}
       />
     </main>
   )
