@@ -14,7 +14,7 @@ const POINT_IMAGES = [
 // the clean footage and loop within that clean range only. An extra 0.5s is
 // trimmed from the loop-in point to avoid a visible jump/flash each time the
 // video restarts.
-const CLIP_START = 8.5
+const CLIP_START = 8.8
 const CLIP_END = 40
 
 export function WhyUs() {
@@ -27,7 +27,7 @@ export function WhyUs() {
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:items-stretch md:gap-14">
         <ScrollReveal className="relative order-1 h-[360px] overflow-hidden md:h-[560px] md:self-start">
-          <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
+          <div className="clip-diagonal-l absolute inset-1 overflow-hidden">
             <video
               autoPlay
               muted

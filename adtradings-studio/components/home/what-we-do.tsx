@@ -39,7 +39,7 @@ export function WhatWeDo() {
           </ScrollReveal>
         </div>
         <ScrollReveal variant="right" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
-          <div className="clip-diagonal-r absolute inset-0 overflow-hidden">
+          <div className="clip-diagonal-r absolute inset-1 overflow-hidden">
             <video
               autoPlay
               loop
@@ -47,12 +47,11 @@ export function WhatWeDo() {
               playsInline
               preload="metadata"
               onLoadedMetadata={(event) => {
-                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
               }}
               onLoadedData={(event) => {
-                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
+                event.currentTarget.play()
               }}
               onSeeked={(event) => {
                 if (!videoReady) {
