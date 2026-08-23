@@ -55,7 +55,7 @@ export function WhyUs() {
         </ScrollReveal>
 
         <div className="order-2 flex min-h-0 flex-col md:h-[560px]">
-          <div className="order-1 mt-12 md:order-1 md:mt-0">
+          <div className="relative z-10 order-1 mt-12 md:order-1 md:mt-0">
             <ScrollReveal>
               <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
             </ScrollReveal>
@@ -66,7 +66,7 @@ export function WhyUs() {
             </ScrollReveal>
           </div>
 
-          <div className="order-1 mt-10 flex flex-col justify-center md:order-2 md:mt-8 md:min-h-0 md:flex-1">
+          <div className="relative z-10 order-1 mt-16 flex flex-col justify-center md:order-2 md:mt-8 md:min-h-0 md:flex-1">
           {t.home.whyUs.items.map((point, i) => (
             <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0">
               <div
