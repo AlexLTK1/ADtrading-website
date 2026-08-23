@@ -45,10 +45,16 @@ export function SiteHeader() {
         floating ? 'border-transparent bg-transparent' : 'border-border bg-primary',
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        {/* The logo always sits on the opaque white wedge panel (never directly on
-            the hero photo), so its colors stay constant regardless of scroll state. */}
-        <Link href="/" className="flex items-center gap-2.5">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+        {/* On the homepage the logo is anchored to the hero wedge, rather than the
+            centered content container, so it stays locked to the upper-left panel. */}
+        <Link
+          href="/"
+          className={cn(
+            'flex items-center gap-2.5',
+            isHome ? 'absolute left-5 top-1/2 -translate-y-1/2 md:left-8' : 'relative',
+          )}
+        >
           <svg viewBox="0 0 36 36" className="size-9 shrink-0" aria-hidden="true" focusable="false">
             <rect x="1" y="1" width="34" height="34" className="fill-primary" />
             <path d="M1 1 L35 1 L1 35 Z" className="fill-accent" />
@@ -66,7 +72,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 md:ml-auto md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
