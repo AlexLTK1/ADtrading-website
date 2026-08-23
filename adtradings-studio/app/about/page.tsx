@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { PackageSearch, ShieldCheck, Truck } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 import { CtaBand } from '@/components/cta-band'
-import { Kicker } from '@/components/ui/kicker'
 
 export const metadata: Metadata = {
   title: 'About — Asia Direct Tradings LTD.',
@@ -13,17 +11,17 @@ export const metadata: Metadata = {
 
 const steps = [
   {
-    icon: PackageSearch,
+    n: '01',
     title: 'We find and vet',
     body: 'You tell us what you want — a specific snack, a food line, or general goods. Our agents on the ground in Asia track it down, visit the supplier in person and confirm quality before anything is committed. Nothing is sourced sight unseen.',
   },
   {
-    icon: ShieldCheck,
+    n: '02',
     title: 'We import and clear',
     body: 'We arrange ocean freight, manage customs clearance and handle bilingual compliance labelling to CFIA and FDA standards. The paperwork, the logistics and the regulatory details are ours to solve, not yours.',
   },
   {
-    icon: Truck,
+    n: '03',
     title: 'We deliver, end to end',
     body: 'What lands in Vancouver is exactly what you approved, ready to sell or use. From first quote to final delivery, one team owns your file — so there is a single number to call and a single answer you can trust.',
   },
@@ -41,7 +39,7 @@ export default function AboutPage() {
       />
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-16 md:px-8 md:py-28">
-        <div className="relative min-h-[340px] overflow-hidden rounded-2xl shadow-sm md:min-h-[560px]">
+        <div className="relative min-h-[340px] overflow-hidden rounded-sm md:min-h-[560px]">
           <Image
             src="/images/about-inspection.png"
             alt="A sourcing agent inspecting packaged goods at an Asian supplier"
@@ -51,8 +49,8 @@ export default function AboutPage() {
           />
         </div>
         <div>
-          <Kicker className="w-fit">Who we are</Kicker>
-          <h2 className="mt-6 text-balance text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Who we are</p>
+          <h2 className="mt-6 text-balance font-mono text-3xl font-medium leading-[1.1] tracking-tight md:text-4xl">
             People at the source, not just a supplier list.
           </h2>
           <div className="mt-7 space-y-5 text-pretty text-lg leading-relaxed text-muted-foreground">
@@ -71,30 +69,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-card">
+      <section className="border-t border-border bg-card">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <Kicker className="w-fit">What we do</Kicker>
-          <h2 className="mt-6 max-w-2xl text-balance text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">What we do</p>
+          <h2 className="mt-6 max-w-2xl text-balance font-mono text-3xl font-medium leading-[1.1] tracking-tight md:text-4xl">
             One team, from first quote to store door.
           </h2>
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {steps.map((step) => {
-              const Icon = step.icon
-              return (
-                <div
-                  key={step.title}
-                  className="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-sm md:p-10"
-                >
-                  <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Icon className="size-5" />
-                  </div>
-                  <h3 className="mt-8 text-xl font-semibold tracking-tight">{step.title}</h3>
-                  <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                    {step.body}
-                  </p>
-                </div>
-              )
-            })}
+          <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
+            {steps.map((step) => (
+              <div key={step.n} className="flex flex-col bg-card p-8 md:p-10">
+                <span className="font-mono text-sm text-accent">{step.n}</span>
+                <h3 className="mt-8 font-mono text-xl font-medium tracking-tight">{step.title}</h3>
+                <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+                  {step.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
