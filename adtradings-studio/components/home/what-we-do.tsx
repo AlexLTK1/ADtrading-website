@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Kicker } from '@/components/ui/kicker'
@@ -15,14 +14,20 @@ export function WhatWeDo() {
       <div className="grid items-stretch gap-10 md:grid-cols-2 md:gap-0">
         <ScrollReveal variant="left" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
           <div className="clip-diagonal-r absolute inset-0">
-            <Image
-              src="/images/warehouse.png"
-              alt="Interior of a modern distribution warehouse"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover"
+            >
+              <source src="/videos/port-timelapse.webm" type="video/webm" />
+            </video>
             <div className="absolute inset-0 bg-primary/15" />
+            <span className="absolute bottom-3 left-4 text-[10px] font-medium tracking-wide text-primary-foreground/70">
+              Video: Anibal Trejo, CC BY 3.0, via Wikimedia Commons
+            </span>
           </div>
         </ScrollReveal>
         <div className="flex flex-col justify-center px-4 py-6 md:px-14 md:py-10">
