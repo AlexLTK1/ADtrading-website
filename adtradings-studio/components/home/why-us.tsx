@@ -39,6 +39,9 @@ export function WhyUs() {
               onCanPlay={(e) => {
                 seekToCleanFrame(e.currentTarget)
               }}
+              onPlay={(e) => {
+                seekToCleanFrame(e.currentTarget)
+              }}
               onTimeUpdate={(e) => {
                 if (e.currentTarget.currentTime >= CLIP_END) {
                   e.currentTarget.currentTime = CLIP_START
@@ -47,7 +50,7 @@ export function WhyUs() {
                 }
               }}
             >
-              <source src="/videos/ship-berthing.webm" type="video/webm" />
+              <source src="/videos/ship-berthing.webm#t=8.5" type="video/webm" />
             </video>
             <div className="absolute inset-0 bg-primary/25" />
             <span className="sr-only">Video attribution: PaSt Photo, CC BY 3.0, via Wikimedia Commons</span>
