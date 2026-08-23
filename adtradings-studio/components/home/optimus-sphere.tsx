@@ -57,11 +57,11 @@ export function OptimusSphere() {
 
       points.sort((a, b) => a.z - b.z)
       points.forEach((point) => {
-        const opacity = 0.2 + (point.z + 1) * 0.4
-        context.fillStyle = `rgba(255, 255, 255, ${opacity})`
+        const opacity = 0.16 + (point.z + 1) * 0.3
+        context.fillStyle = `rgba(0, 159, 227, ${opacity})`
         context.fillText(point.char, point.x, point.y)
       })
-      angle += 0.02
+      angle += 0.006
       frameRef.current = requestAnimationFrame(render)
     }
 
