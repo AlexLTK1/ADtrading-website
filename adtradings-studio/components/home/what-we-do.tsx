@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Kicker } from '@/components/ui/kicker'
@@ -8,6 +9,7 @@ import { ScrollReveal } from '@/components/scroll-reveal'
 
 export function WhatWeDo() {
   const { t } = useLocale()
+  const [videoReady, setVideoReady] = useState(false)
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
@@ -47,12 +49,16 @@ export function WhatWeDo() {
               onLoadedMetadata={(event) => {
                 event.currentTarget.currentTime = 0.5
               }}
+              onCanPlay={(event) => {
+                event.currentTarget.currentTime = 0.5
+              }}
+              onSeeked={() => setVideoReady(true)}
               onTimeUpdate={(event) => {
                 if (event.currentTarget.currentTime < 0.5) {
                   event.currentTarget.currentTime = 0.5
                 }
               }}
-              className="h-full w-full scale-[1.5] object-cover object-center"
+              className={`h-full w-full scale-[1.5] object-cover object-center transition-opacity duration-200 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
             >
               <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
