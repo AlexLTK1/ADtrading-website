@@ -33,16 +33,15 @@ export function SiteHeader() {
     setOpen(false)
   }, [pathname])
 
-  // Reproduces the live TOKI header behavior: at the top of the page the header is
-  // completely transparent and floats over the hero's own diagonal artwork below it.
-  // After scrolling, it becomes a solid rectangular navy bar (no diagonal, no wedge)
-  // fixed to the top of the viewport. The diagonal geometry lives in the hero
-  // sections themselves (HomeHero / PageHero), never in the header.
+  // Keep the transparent treatment for image-led pages, but use the compact
+  // navy treatment on the white contact page so its navigation remains visible.
+  const solidHeader = scrolled || pathname === '/contact'
+
   return (
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 flex h-16 items-center transition-colors duration-300 ease-out md:h-20',
-        scrolled ? 'bg-primary shadow-[0_2px_16px_rgba(6,31,42,0.25)]' : 'bg-transparent',
+        solidHeader ? 'bg-primary shadow-[0_2px_16px_rgba(6,31,42,0.25)]' : 'bg-transparent',
       )}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 md:px-8">
