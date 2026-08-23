@@ -25,8 +25,8 @@ export function HomeHero() {
       </div>
 
       {/* Blue photographic wash so the white type stays easy to read against the photo. */}
-      <div className="absolute inset-0 bg-accent/70 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
+      <div className="absolute inset-1 bg-accent/70 mix-blend-multiply" />
+      <div className="absolute inset-1 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
 
       <div aria-hidden="true" className="pointer-events-none absolute right-[-8rem] top-1/2 z-0 h-[20rem] w-[20rem] -translate-y-1/2 opacity-60 sm:right-[-2rem] sm:h-[26rem] sm:w-[26rem] lg:right-[6%] lg:h-[31rem] lg:w-[31rem]">
         <OptimusSphere />
