@@ -19,7 +19,8 @@ export default function AboutPage() {
         imageAlt="Vancouver harbour and port at golden hour with coastal mountains"
       />
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-16 md:px-8 md:py-28">
+      <section className="bg-muted">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-16 md:px-8 md:py-28">
         <div className="relative min-h-[340px] overflow-hidden shadow-sm md:min-h-[560px]">
           <div className="clip-panel-r absolute inset-0 z-10 hidden bg-primary/10 md:block" />
           <Image
@@ -40,6 +41,7 @@ export default function AboutPage() {
               <p key={i}>{p}</p>
             ))}
           </div>
+        </div>
         </div>
       </section>
 

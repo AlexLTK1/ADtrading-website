@@ -22,7 +22,12 @@ export default function ProductsPage() {
         imageAlt="Premium Asian snacks and specialty goods arranged on a warm surface"
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+      <section className="bg-muted">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+          <div className="mb-12 flex items-end justify-between gap-6">
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">Selected categories, sourced with care.</h2>
+            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">Our range</span>
+          </div>
         <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
           {t.products.categories.map((category, i) => (
             <div
@@ -47,6 +52,7 @@ export default function ProductsPage() {
             className="transition-transform group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5"
           />
         </Button>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 pb-24 md:px-8">

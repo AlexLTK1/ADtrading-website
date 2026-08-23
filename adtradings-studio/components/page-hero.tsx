@@ -11,7 +11,7 @@ type PageHeroProps = {
 
 export function PageHero({ label, title, intro, image, imageAlt }: PageHeroProps) {
   return (
-    <section className="relative flex min-h-[56vh] items-end overflow-hidden bg-primary">
+    <section className="relative flex min-h-[62vh] items-end overflow-hidden bg-primary">
       <div className="absolute inset-0">
         <Image
           src={image || '/placeholder.svg'}
