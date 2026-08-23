@@ -12,7 +12,9 @@ export function OptimusSphere() {
     const context = canvas.getContext('2d')
     if (!context) return
 
-    const characters = '░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯'
+    // Dot-matrix globe treatment copied from the referenced template, recolored to
+    // the existing brand cyan used throughout the hero.
+    const characters = '·•'
     let angle = 0
 
     const resize = () => {
