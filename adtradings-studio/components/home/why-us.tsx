@@ -26,7 +26,7 @@ export function WhyUs() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:gap-20">
-        <div className="md:sticky md:top-28 md:h-[560px] md:self-start">
+        <div className="order-2 md:sticky md:top-28 md:order-2 md:h-[560px] md:self-start">
           <ScrollReveal className="relative h-[280px] overflow-hidden md:h-full">
             <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
               <video
