@@ -25,8 +25,49 @@ export function WhyUs() {
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
-      <div className="grid gap-14 md:grid-cols-[1.1fr_1fr] md:gap-20">
-        <div className="order-2 flex flex-col md:order-2 md:h-[560px]">
+      <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:items-stretch md:gap-14">
+        <ScrollReveal className="relative order-1 h-[360px] overflow-hidden md:h-[560px] md:self-start">
+          <div className="clip-diagonal-r absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              className={`h-full w-full scale-[1.22] object-cover object-center transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              onLoadedMetadata={(e) => seekToCleanFrame(e.currentTarget)}
+              onLoadedData={(e) => seekToCleanFrame(e.currentTarget)}
+              onCanPlay={(e) => {
+                seekToCleanFrame(e.currentTarget)
+                setVideoReady(true)
+              }}
+              onTimeUpdate={(e) => {
+                if (e.currentTarget.currentTime >= CLIP_END) {
+                  e.currentTarget.currentTime = CLIP_START
+                } else if (e.currentTarget.currentTime < CLIP_START) {
+                  seekToCleanFrame(e.currentTarget)
+                }
+              }}
+            >
+              <source src="/videos/ship-berthing.webm" type="video/webm" />
+            </video>
+            <div className="absolute inset-0 bg-primary/25" />
+            <span className="sr-only">Video attribution: PaSt Photo, CC BY 3.0, via Wikimedia Commons</span>
+          </div>
+        </ScrollReveal>
+
+        <div className="order-2 flex min-h-0 flex-col md:h-[560px]">
+          <div className="order-2 mt-12 md:order-1 md:mt-0">
+            <ScrollReveal>
+              <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="mt-6 text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl">
+                {t.home.whyUs.title}
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          <div className="order-1 flex min-h-0 flex-1 flex-col md:order-2 md:mt-8">
           {t.home.whyUs.items.map((point, i) => (
             <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
               <div
@@ -51,48 +92,8 @@ export function WhyUs() {
               </div>
             </ScrollReveal>
           ))}
-        </div>
-
-        <div className="order-2 md:order-1 md:sticky md:top-28 md:h-[560px] md:self-start">
-          <div className="mt-10 md:mt-0">
-            <ScrollReveal>
-              <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <h2 className="mt-6 text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl">
-                {t.home.whyUs.title}
-              </h2>
-            </ScrollReveal>
           </div>
-          <ScrollReveal className="relative mt-10 h-[280px] overflow-hidden md:mt-14 md:h-[560px]">
-            <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
-              <video
-                autoPlay
-                muted
-                playsInline
-                preload="auto"
-                className={`h-full w-full scale-[1.22] object-cover object-center transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-                onLoadedMetadata={(e) => seekToCleanFrame(e.currentTarget)}
-                onLoadedData={(e) => seekToCleanFrame(e.currentTarget)}
-                onCanPlay={(e) => {
-                  seekToCleanFrame(e.currentTarget)
-                  setVideoReady(true)
-                }}
-                onTimeUpdate={(e) => {
-                  if (e.currentTarget.currentTime >= CLIP_END) {
-                    e.currentTarget.currentTime = CLIP_START
-                  } else if (e.currentTarget.currentTime < CLIP_START) {
-                    seekToCleanFrame(e.currentTarget)
-                  }
-                }}
-              >
-                <source src="/videos/ship-berthing.webm" type="video/webm" />
-              </video>
-              <div className="absolute inset-0 bg-primary/25" />
-              <span className="sr-only">Video attribution: PaSt Photo, CC BY 3.0, via Wikimedia Commons</span>
-            </div>
-          </ScrollReveal>
-        </div>
+        </div> 
 
       </div>
     </section>
