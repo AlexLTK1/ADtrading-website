@@ -52,22 +52,38 @@ export default function AboutPage() {
             {t.about.process.title}
           </h2>
           <div className="mt-14 flex flex-col">
-            {t.about.process.steps.map((step, i) => (
-              <div
-                key={step.title}
-                className={`grid gap-6 border-t border-border py-10 md:grid-cols-[auto_1fr] md:gap-12 ${
-                  i === 0 ? 'border-t-0 pt-0' : ''
-                }`}
-              >
-                <span className="shrink-0 font-mono text-sm text-accent">{step.n}</span>
-                <div>
-                  <h3 className="text-xl font-semibold tracking-tight">{step.title}</h3>
-                  <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-                    {step.body}
-                  </p>
-                </div>
-              </div>
-            ))}
+            {t.about.process.steps.map((step, i) => {
+              const backgroundImages = [
+                '/images/about-inspection.png',
+                '/images/warehouse-interior.png',
+                '/images/port-containers.png',
+              ]
+
+              return (
+                <article
+                  key={step.title}
+                  tabIndex={0}
+                  className={`group relative isolate grid gap-6 overflow-hidden border-t-2 border-primary/15 px-5 py-10 transition-colors duration-500 hover:border-accent focus-visible:border-accent md:grid-cols-[5rem_1fr_auto] md:items-start md:gap-10 md:px-10 ${
+                    i === 0 ? 'border-t-0' : ''
+                  }`}
+                >
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 -z-10 bg-cover bg-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+                    style={{ backgroundImage: `url(${backgroundImages[i]})` }}
+                  />
+                  <div aria-hidden="true" className="absolute inset-0 -z-10 bg-primary/95 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+                  <span className="font-mono text-2xl font-semibold text-accent transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent">{step.n}</span>
+                  <div>
+                    <h3 className="text-xl font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent">{step.title}</h3>
+                    <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent">
+                      {step.body}
+                    </p>
+                  </div>
+                  <span className="hidden text-2xl text-primary transition-all duration-300 group-hover:translate-x-2 group-hover:text-accent group-focus-visible:translate-x-2 group-focus-visible:text-accent md:block">→</span>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
