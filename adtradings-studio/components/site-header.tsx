@@ -60,8 +60,8 @@ export function SiteHeader() {
               AD
             </text>
           </svg>
-          <span className={cn('hidden text-base font-semibold tracking-tight sm:inline', scrolled ? 'text-primary-foreground' : 'text-primary')}>
-            Asia<span className={scrolled ? 'text-highlight' : 'text-accent'}>Direct</span>
+          <span className={cn('hidden text-base font-semibold tracking-tight sm:inline', solidHeader ? 'text-highlight' : 'text-primary')}>
+            Asia<span className="text-accent">Direct</span>
           </span>
         </Link>
 
