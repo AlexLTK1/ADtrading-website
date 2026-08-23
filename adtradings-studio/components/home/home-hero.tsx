@@ -1,48 +1,63 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Kicker } from '@/components/ui/kicker'
+import { useLocale } from '@/lib/i18n/language-provider'
+import { OptimusSphere } from '@/components/home/optimus-sphere'
 
 export function HomeHero() {
-  return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden">
-      <Image
-        src="/images/hero-port.png"
-        alt="Container shipping port at golden hour"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0e0b07]/95 via-[#0e0b07]/70 to-[#0e0b07]/45" />
+  const { t } = useLocale()
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pt-32 pb-14 md:px-8 md:pt-40">
-        <p className="font-mono text-xs uppercase tracking-[0.4em] text-white/70">
-          Asia <span className="text-white">—</span> North America
-        </p>
-        <h1 className="mt-8 max-w-5xl text-balance font-mono text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl md:text-7xl lg:text-8xl">
-          Premium Asian goods, <span className="text-[#8fd6b4]">sourced and delivered</span> with
-          precision.
-        </h1>
-        <p className="mt-10 max-w-2xl text-pretty text-lg leading-relaxed text-white/80 md:text-xl">
-          Asia Direct Tradings LTD. is a Vancouver-based trade house connecting North American
-          markets with premium suppliers across Asia. With representatives on the ground and a
-          single team accountable at every stage, we deliver an experience as dependable as the
-          products are exceptional.
-        </p>
-        <div className="mt-12 flex flex-wrap items-center gap-4">
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-2 rounded-sm bg-primary px-7 py-4 font-mono text-sm uppercase tracking-[0.15em] text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Request a consultation
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 rounded-sm border border-white/40 px-7 py-4 font-mono text-sm uppercase tracking-[0.15em] text-white transition-colors hover:border-white hover:bg-white/10"
-          >
-            Our services
-          </Link>
+  return (
+    <section className="relative flex min-h-[95vh] flex-col overflow-hidden bg-primary">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero-port.png"
+          alt="Aerial view of a busy Asia-Pacific shipping port at golden hour"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+
+      {/* Blue photographic wash so the white type stays easy to read against the photo. */}
+      <div className="absolute inset-0 bg-accent/70 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
+
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-8rem] top-1/2 z-0 h-[20rem] w-[20rem] -translate-y-1/2 opacity-60 sm:right-[-2rem] sm:h-[26rem] sm:w-[26rem] lg:right-[6%] lg:h-[31rem] lg:w-[31rem]">
+        <OptimusSphere />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
+        <div className="max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+          <Kicker tone="inverse" className="w-fit">
+            {t.home.hero.kicker}
+          </Kicker>
+          <h1 className="mt-5 max-w-3xl text-balance text-5xl leading-[0.98] font-semibold tracking-tight text-primary-foreground sm:text-6xl md:text-8xl lg:text-[6.5rem]">
+            {t.home.hero.title} <span className="text-highlight">{t.home.hero.titleAccent}</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-primary-foreground md:text-xl">
+            {t.home.hero.subtitle}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Button render={<Link href="/contact" />} size="xl" variant="inverse">
+              {t.home.hero.ctaPrimary}
+              <ArrowUpRight data-icon="inline-end" />
+            </Button>
+            <Button
+              render={<Link href="/services" />}
+              size="xl"
+              variant="outline"
+              className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:border-accent hover:bg-accent hover:text-accent-foreground"
+            >
+              {t.home.hero.ctaSecondary}
+            </Button>
+          </div>
         </div>
       </div>
     </section>

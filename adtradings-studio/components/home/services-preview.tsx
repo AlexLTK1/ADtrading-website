@@ -1,67 +1,59 @@
+'use client'
+
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { services } from '@/lib/services'
+import { Kicker } from '@/components/ui/kicker'
+import { useLocale } from '@/lib/i18n/language-provider'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 export function ServicesPreview() {
+  const { t } = useLocale()
+
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-            Five ways to work with us
-          </p>
-          <h2 className="mt-6 max-w-xl text-balance font-mono text-4xl font-medium leading-[1.05] tracking-tight md:text-5xl">
-            Choose the lane that matches your business.
-          </h2>
+          <ScrollReveal>
+            <Kicker className="w-fit">{t.home.servicesPreview.kicker}</Kicker>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="mt-6 max-w-xl text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl">
+              {t.home.servicesPreview.title}
+            </h2>
+          </ScrollReveal>
         </div>
-        <Link
-          href="/services"
-          className="font-mono text-sm uppercase tracking-[0.15em] text-primary transition-colors hover:text-primary/70"
-        >
-          All services →
-        </Link>
+        <ScrollReveal delay={180} variant="right">
+          <Link
+            href="/services"
+            className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+          >
+            {t.home.servicesPreview.cta}
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+          </Link>
+        </ScrollReveal>
       </div>
 
-      <div className="mt-16 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => {
-          const Icon = service.icon
-          return (
+      <div className="mt-16 flex flex-col">
+        {services.map((service, i) => (
+          <ScrollReveal key={service.title} delay={i * 90}>
             <Link
-              key={service.n}
               href="/services"
-              className="group flex flex-col bg-background p-8 transition-colors hover:bg-card"
+              className={`group flex items-start gap-6 border-t border-border py-8 transition-colors hover:bg-secondary/60 md:items-center ${i === 0 ? 'border-t-0 pt-0' : ''}`}
             >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-sm font-medium text-accent">{service.n}</span>
-                <Icon className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
-              </div>
-              <h3 className="mt-10 font-mono text-xl font-medium tracking-tight">
+              <span className="w-10 shrink-0 font-mono text-sm text-accent">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 className="flex-1 text-xl font-semibold tracking-tight md:text-2xl">
                 {service.title}
               </h3>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+              <p className="hidden max-w-md flex-1 text-pretty leading-relaxed text-muted-foreground md:block">
                 {service.short}
               </p>
+              <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-accent" />
             </Link>
-          )
-        })}
-
-        <Link
-          href="/contact"
-          className="group flex flex-col justify-between bg-primary p-8 text-primary-foreground transition-colors hover:bg-primary/90"
-        >
-          <p className="font-mono text-sm uppercase tracking-[0.2em] text-primary-foreground/60">
-            Not sure which fits?
-          </p>
-          <div>
-            <h3 className="mt-10 font-mono text-xl font-medium tracking-tight">
-              Tell us the goal — we&apos;ll map the route.
-            </h3>
-            <span className="mt-6 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-[0.15em]">
-              Start an inquiry
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </div>
-        </Link>
+          </ScrollReveal>
+        ))}
       </div>
     </section>
   )

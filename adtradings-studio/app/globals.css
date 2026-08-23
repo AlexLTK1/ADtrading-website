@@ -5,8 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), var(--font-noto-sc), var(--font-noto-thai), ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-oswald), var(--font-noto-sc), var(--font-noto-thai), var(--font-geist-sans), sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -26,6 +28,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-highlight: var(--highlight);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -48,33 +51,37 @@
 :root {
   color-scheme: light;
 
-  /* White + Green (#15583d) + Red (#930005) editorial palette */
+  /* TOKI-inspired corporate palette: deep navy, cyan blue, white, yellow */
   --background: #ffffff;
-  --foreground: #17140f;
-  --card: #f6f5f1;
-  --card-foreground: #17140f;
+  --foreground: #061f2a;
+  --card: #f3f8fa;
+  --card-foreground: #061f2a;
   --popover: #ffffff;
-  --popover-foreground: #17140f;
+  --popover-foreground: #061f2a;
 
-  --primary: #15583d;
+  --primary: #061f2a;
   --primary-foreground: #ffffff;
 
-  --secondary: #f1efe9;
-  --secondary-foreground: #17140f;
+  --secondary: #e6f3f8;
+  --secondary-foreground: #061f2a;
 
-  --muted: #f1efe9;
-  --muted-foreground: #5e5a51;
+  --muted: #f3f8fa;
+  --muted-foreground: #52717d;
 
-  --accent: #930005;
+  --accent: #009fe3;
   --accent-foreground: #ffffff;
+  --highlight: #ffdd00;
 
-  --destructive: #930005;
+  --destructive: #d9503f;
 
-  --border: rgba(23, 20, 15, 0.12);
-  --input: rgba(23, 20, 15, 0.18);
-  --ring: #15583d;
+  --border: rgba(6, 31, 42, 0.14);
+  --input: rgba(6, 31, 42, 0.2);
+  --ring: #009fe3;
 
-  --radius: 0.25rem;
+  --radius: 0.125rem;
+
+  --shadow-soft: 0 1px 2px rgba(6, 34, 44, 0.05), 0 12px 30px -16px rgba(6, 34, 44, 0.22);
+  --shadow-lift: 0 8px 16px rgba(6, 34, 44, 0.08), 0 22px 42px -18px rgba(6, 34, 44, 0.24);
 }
 
 @layer base {
@@ -83,5 +90,36 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Angular corner cut — used on buttons and small chips */
+  .clip-corner {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  }
+  .clip-corner-sm {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+  }
+
+  /* Diagonal image mask — hero / page-hero photography */
+  .clip-diagonal-r {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 12% 100%);
+  }
+  .clip-diagonal-l {
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  }
+
+  /* Diagonal color-block overlay panel */
+  .clip-panel-r {
+    clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .clip-panel-l {
+    clip-path: polygon(0 0, 72% 0, 100% 100%, 0 100%);
+  }
+
+  /* Diagonal wedge — top-left backdrop panel behind logo/nav on photographic heroes */
+  .clip-wedge-l {
+    clip-path: polygon(0 0, 42% 0, 0 100%);
   }
 }

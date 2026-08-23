@@ -1,54 +1,73 @@
-import type { Metadata } from 'next'
+'use client'
+
 import { PageHero } from '@/components/page-hero'
 import { CtaBand } from '@/components/cta-band'
 import { services } from '@/lib/services'
-
-export const metadata: Metadata = {
-  title: 'Services — Asia Direct Tradings LTD.',
-  description:
-    'Five ways to work with us: B2B wholesale supply, sourcing, market expansion for Asian brands, reverse export to Asia, and Vancouver local delivery.',
-}
+import { useLocale } from '@/lib/i18n/language-provider'
 
 export default function ServicesPage() {
+  const { locale, t } = useLocale()
+  const sectionTitle = locale === 'tc' ? '為完整貿易旅程而設' : locale === 'ja' ? '貿易の旅全体を支える仕組み' : locale === 'zh' ? '为完整贸易旅程而设' : locale === 'th' ? 'รองรับทุกขั้นตอนของการค้า' : 'Built for the full trade journey.'
+  const sectionKicker = locale === 'tc' ? '我們的業務' : locale === 'ja' ? '事業内容' : locale === 'zh' ? '我们的业务' : locale === 'th' ? 'สิ่งที่เราทำ' : 'What we do'
+
   return (
     <main>
       <PageHero
-        label="Five ways to work with us"
-        title="Choose the lane that matches your business."
-        intro="From wholesale supply to reverse export, every service runs through one seamless desk — with sourcing agents stationed across Asia and a team rooted in Vancouver."
+        label={t.services.hero.kicker}
+        title={t.services.hero.title}
+        intro={t.services.hero.subtitle}
         image="/images/sourcing-market.png"
         imageAlt="Asian trade market at dawn"
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-8 md:px-8">
-        <div className="flex flex-col divide-y divide-border border-b border-border">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <article
-                key={service.n}
-                className="grid gap-6 py-12 md:grid-cols-[auto_1fr_1.4fr] md:gap-12 md:py-16"
-              >
-                <span className="font-mono text-sm text-primary">{service.n}</span>
-                <div className="flex items-start gap-4">
-                  <Icon className="mt-1 h-6 w-6 shrink-0 text-primary" />
-                  <h2 className="text-balance font-mono text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-                    {service.title}
-                  </h2>
-                </div>
-                <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-                  {service.long}
-                </p>
-              </article>
-            )
-          })}
+      <section className="bg-muted">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+          <div className="mb-12 flex items-end justify-between gap-6">
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">{sectionTitle}</h2>
+            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-accent md:block">{sectionKicker}</span>
+          </div>
+          <div className="flex flex-col">
+            {services.map((service, i) => {
+              const localizedService = t.services.items?.[i]
+              const serviceTitle = localizedService?.title ?? service.title
+              const serviceLong = localizedService?.long ?? service.long
+              const backgroundImages = [
+                '/images/premium-goods.png',
+                '/images/sourcing-market.png',
+                '/images/trade-route.png',
+                '/images/warehouse.png',
+                '/images/delivery.png',
+              ]
+
+              return (
+                <article
+                  key={service.n}
+                  tabIndex={0}
+                  className="group relative isolate grid gap-5 overflow-hidden border-t-2 border-primary/15 px-5 py-9 transition-colors duration-500 hover:border-accent focus-visible:border-accent md:grid-cols-[5rem_1fr_auto] md:items-start md:gap-10 md:px-10 md:py-10"
+                >
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 -z-10 bg-cover bg-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+                    style={{ backgroundImage: `url(${backgroundImages[i]})` }}
+                  />
+                  <div aria-hidden="true" className="absolute inset-0 -z-10 bg-primary/95 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+                  <span className="font-mono text-2xl font-semibold text-accent transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent">{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent md:text-3xl">{serviceTitle}</h2>
+                    <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-accent group-focus-visible:text-accent">{serviceLong}</p>
+                  </div>
+                  <span className="hidden text-2xl text-primary transition-all duration-300 group-hover:translate-x-2 group-hover:text-accent group-focus-visible:translate-x-2 group-focus-visible:text-accent md:block">→</span>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
 
       <CtaBand
-        eyebrow="One form, one business day"
-        title="Not sure which lane fits? Start with a conversation."
-        body="Tell us the product and the market — our agents reply within one business day with the right approach."
+        title={t.home.cta.title}
+        body={t.home.cta.body}
+        cta={t.home.cta.ctaPrimary}
       />
     </main>
   )
