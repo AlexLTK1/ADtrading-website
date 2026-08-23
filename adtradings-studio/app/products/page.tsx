@@ -51,8 +51,8 @@ export default function ProductsPage() {
 
       <section className="mx-auto max-w-7xl px-5 pb-24 md:px-8">
         <div className="relative grid items-stretch overflow-hidden md:grid-cols-2">
-          <div className="clip-panel-r absolute inset-0 hidden bg-primary md:block" />
-          <div className="relative flex flex-col justify-center bg-primary px-5 py-16 text-primary-foreground md:bg-transparent md:px-14 md:py-24">
+          <div className="absolute inset-0 hidden bg-primary md:block" />
+          <div className="relative flex flex-col justify-center bg-primary px-5 py-16 text-primary-foreground md:px-14 md:py-24">
             <Kicker tone="inverse" className="w-fit">
               Import-ready, compliant
             </Kicker>
