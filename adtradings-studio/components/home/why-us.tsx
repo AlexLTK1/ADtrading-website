@@ -54,7 +54,7 @@ export function WhyUs() {
           </div>
         </ScrollReveal>
 
-        <div className="order-2 flex min-h-0 flex-col md:h-[560px] md:overflow-hidden">
+        <div className="order-2 flex min-h-0 flex-col md:h-[560px]">
           <div className="relative z-10 order-1 mt-12 shrink-0 md:order-1 md:mt-0">
             <ScrollReveal>
               <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
