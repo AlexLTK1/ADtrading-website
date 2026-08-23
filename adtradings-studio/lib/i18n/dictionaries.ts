@@ -57,6 +57,7 @@ type Dictionary = {
   services: {
     hero: { kicker: string; title: string; subtitle: string }
     learnMore: string
+    items?: { title: string; long: string }[]
   }
   products: {
     hero: { kicker: string; title: string; subtitle: string }
@@ -443,7 +444,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     home: {
       hero: {
-        kicker: 'แวนคูเวอร์ — บริษัทการค้��เอเชีย',
+        kicker: 'แวนคูเวอร์ — บริษัทการค้���เอเชีย',
         title: 'จัดหาสินค้าเอเชียคุณภาพส��ง',
         titleAccent: 'แบบครบวงจร',
         subtitle:
@@ -616,8 +617,8 @@ dictionaries.tc = {
     servicesPreview: { kicker: '服務', title: '五種貨物流通方式，及隨之而來的貿易機會。', cta: '查看全部服務' },
     cta: { title: '準備好開始貿易了嗎？', body: '告訴我們您需要採購、銷售或運輸的產品——我們的團隊將在一個工作日內給出方案。', ctaPrimary: '聯絡我們', ctaSecondary: '查看我們的產品' },
   },
-  services: { ...dictionaries.zh.services, hero: { kicker: '服務', title: '五種貨物流通方式', subtitle: '從批發供應到反向出口，每一項服務都由同一團隊負責——代理駐紮亞洲各地，溫哥華本地團隊隨時支援。' }, learnMore: '了解更多' },
-  products: { ...dictionaries.zh.products, hero: { kicker: '產品', title: '我們的產品', subtitle: '由品類專家精選的高端亞洲乾貨與特色食品，進口即可上架，價格適合批發。' }, cta: { title: '正在尋找特定產品？', body: '即使目錄中暫未列出，我們的採購團隊大多也能找到。', button: '聯絡我們的採購團隊' } },
+  services: { ...dictionaries.zh.services, hero: { kicker: '服務', title: '五種貨物流通方式', subtitle: '從批發供應到反向出口，每一項服務都由同一團隊負責——代理駐紮亞洲各地，溫哥華本地團隊隨時支援。' }, learnMore: '了解更多', items: [{ title: 'B2B 批發供應', long: '精選高端亞洲乾貨與特色食品，進口即可上架，並以批發價格提供。每項產品均由品類專家挑選，完成清關並符合 CFIA 與 FDA 標籤標準。' }, { title: '採購服務', long: '告訴我們產品與市場需求。我們在亞洲各地的代理會尋找合適供應商、親自考察、協商條款，並管理運輸、清關與合規，讓您收到完全符合核准規格的產品。' }, { title: '協助亞洲品牌拓展市場', long: '對準備進入北美、但尚未需要自設辦公室的亞洲品牌，我們可作為您的加拿大團隊，負責進口、合規標籤、倉儲、分銷與買家關係。' }, { title: '反向出口至亞洲', long: '貿易路線雙向運行。我們將加拿大產品出口給亞洲各地經審核的買家，並由同一團隊管理文件、運輸與目的地合規。' }, { title: '溫哥華本地配送', long: '提供大溫哥華地區的商業配送，從冷凍食品到大型貨運皆可處理。最後一公里由我們的團隊負責，讓貨物從港口到門口始終由同一團隊跟進。' }] },
+  products: { ...dictionaries.zh.products, hero: { kicker: '產品', title: '我們的產品', subtitle: '由品類專家精選的高端亞洲乾貨與特色食品，進口即可上架，價格適合批發。' }, categories: [{ title: '乾海產品', body: '由品類專家精選的高端乾海產品，完成清關並符合 CFIA 與 FDA 標籤標準。' }, { title: '特色零食', body: '具備市場需求的地區零食品牌，進口後以批發價格供北美分銷。' }, { title: '日常食材', body: '醬料、乾貨與日常食材，直接採購自亞洲經審核的製造商。' }, { title: '季節及特色商品', body: '限量及季節性商品，可透過我們駐紮亞洲各地的代理按需採購。' }], cta: { title: '正在尋找特定產品？', body: '即使目錄中暫未列出，我們的採購團隊大多也能找到。', button: '聯絡我們的採購團隊' } },
   about: { ...dictionaries.zh.about, hero: { kicker: '關於我們', title: '以實地存在，而非紙面承諾，建立的貿易商行。', subtitle: 'Asia Direct Tradings LTD. 是一家總部位於溫哥華的貿易商行，連接亞洲供應商與北美買家。' }, story: { ...dictionaries.zh.about.story, kicker: '我們的故事', title: '由希望把貿易做得踏實的人創辦。' }, process: { ...dictionaries.zh.about.process, kicker: '合作方式', title: '三個步驟，一個團隊全程負責。' } },
   contact: { ...dictionaries.zh.contact, hero: { kicker: '聯絡我們', title: '讓我們談談貿易。', subtitle: '告訴我們您需要採購、銷售或運輸的產品——我們的團隊將在一個工作日內給出方案。' }, infoTitle: '直接聯絡我們', formTitle: '發送訊息', form: { name: '姓名', email: '電子郵件', company: '公司', message: '留言', submit: '發送訊息', submitting: '發送中…', success: '感謝您的留言，我們已收到並將盡快與您聯絡。', error: '出現問題，請重試或直接寄送電子郵件給我們。' } },
   footer: { ...dictionaries.zh.footer, explore: '快速導覽', contact: '聯絡方式', strapline: '高端亞洲貨源——零食、食品與日用品。' },
@@ -635,9 +636,9 @@ dictionaries.ja = {
     servicesPreview: { kicker: 'サービス', title: '商品を動かし、その先の取引まで支える五つの方法。', cta: 'サービス一覧を見る' },
     cta: { title: '商品を動かす準備はできましたか？', body: '調達、販売、輸送したい商品をお聞かせください。1営業日以内にご提案します。', ctaPrimary: 'お問い合わせ', ctaSecondary: '取扱商品を見る' },
   },
-  services: { ...dictionaries.en.services, hero: { kicker: 'サービス', title: '商品を動かす五つの方法', subtitle: '卸売供給から逆輸出まで、アジア各地のスタッフとバンクーバーのチームが一つの窓口で対応します。' } },
-  products: { ...dictionaries.en.products, hero: { kicker: '取扱商品', title: '私たちが扱う商品', subtitle: '専門スタッフが選んだ上質なアジアの乾物・食品を、卸売向けに輸入対応済みでご提供します。' }, cta: { title: 'お探しの商品はありますか？', body: 'カタログにない商品も、調達チームが見つけられる可能性があります。', button: '調達チームに相談する' } },
-  about: { ...dictionaries.en.about, hero: { kicker: '会社案内', title: '書類ではなく、現地での存在感から生まれた貿易商社。', subtitle: 'Asia Direct Tradings LTD. は、アジアの供給者と北米の買い手をつなぐバンクーバーの貿易商社です。' }, story: { ...dictionaries.en.about.story, kicker: '私たちの歩み', title: '正しい貿易を実現したい人々によって設立されました。' }, process: { ...dictionaries.en.about.process, kicker: '仕事の進め方', title: '三つのステップ、一つの責任ある窓口。' } },
+  services: { ...dictionaries.en.services, hero: { kicker: 'サービス', title: '商品を動かす五つの方法', subtitle: '卸売供給から逆輸出まで、アジア各地のスタッフとバンクーバーのチームが一つの窓口で対応します。' }, items: [{ title: 'B2B卸売供給', long: '専門スタッフが選んだ上質なアジアの乾物・食品を、輸入対応済みで卸売向けにご提供します。各商品は通関とCFIA・FDAの表示基準を確認してからお届けします。' }, { title: '商品調達サービス', long: '商品と市場をお聞かせください。アジア各地のスタッフが候補となる仕入先を探し、現地で確認し、条件交渉から輸送、通関、法令対応まで管理します。' }, { title: 'アジアブランドの北米進出', long: '北米進出を目指すアジアブランドに代わり、カナダ側の窓口として輸入、表示対応、保管、流通、買い手との関係づくりを一貫して支援します。' }, { title: 'アジアへの逆輸出', long: '貿易は双方向です。カナダの商品をアジアの信頼できる買い手へ輸出し、書類、輸送、仕向地の法令対応まで一つの窓口で管理します。' }, { title: 'バンクーバー地域配送', long: '冷凍食品から大型貨物まで、メトロ・バンクーバーの商業配送に対応します。港からお届け先まで、同じチームが最後まで管理します。' }] },
+  products: { ...dictionaries.en.products, hero: { kicker: '取扱商品', title: '私たちが扱う商品', subtitle: '専門スタッフが選んだ上質なアジアの乾物・食品を、卸売向けに輸入対応済みでご提供します。' }, categories: [{ title: '乾燥水産物', body: '専門スタッフが選んだ上質な乾燥水産物。通関を済ませ、CFIA・FDAの表示基準に対応しています。' }, { title: 'こだわりのスナック', body: '北米で需要のある地域ブランドのスナックを輸入し、卸売向けにご提供します。' }, { title: '日常の食材', body: 'ソース、乾物、日常の食材を、アジアの審査済みメーカーから直接調達します。' }, { title: '季節・特選商品', body: '季節限定商品や特選商品を、アジア各地のスタッフを通じてご要望に応じて調達します。' }], cta: { title: 'お探しの商品はありますか？', body: 'カタログにない商品も、調達チームが見つけられる可能性があります。', button: '調達チームに相談する' } },
+  about: { ...dictionaries.en.about, hero: { kicker: '会社案内', title: '書類ではなく、現地での存在感から生まれた貿易商社。', subtitle: 'Asia Direct Tradings LTD. は、アジアの供給者と北米の買い手をつなぐバンクーバーの貿易商社です。' }, story: { ...dictionaries.en.about.story, kicker: '私たちの歩み', title: '正しい貿易を実現したい人々によって設立されました。' }, process: { ...dictionaries.en.about.process, kicker: '仕事の進め方', title: '三つのステップ、一つの責任ある窓口。', steps: [{ n: '01', title: '要件を確認', body: '商品、対象市場、法令対応の要件を確認してから、すべてを開始します。' }, { n: '02', title: '調達・確認', body: '現地スタッフが仕入先を訪問し、条件を交渉して品質を直接確認します。' }, { n: '03', title: '納品・サポート', body: '輸送、通関、ラストマイル配送まで、一つのチームが最後まで責任を持って管理します。' }] } },
   contact: { ...dictionaries.en.contact, hero: { kicker: 'お問い合わせ', title: '貿易についてお話ししましょう。', subtitle: '調達、販売、輸送したい商品をお聞かせください。1営業日以内にご提案します。' }, infoTitle: '直接お問い合わせ', formTitle: 'メッセージを送る', form: { name: 'お名前', email: 'メールアドレス', company: '会社名', message: 'メッセージ', submit: '送信する', submitting: '送信中…', success: 'お問い合わせありがとうございます。確認後、担当者よりご連絡します。', error: '問題が発生しました。もう一度お試しいただくか、直接メールでお問い合わせください。' } },
   footer: { ...dictionaries.en.footer, explore: 'メニュー', contact: 'お問い合わせ', strapline: '上質なアジア商品を一貫して調達 — 食品・スナック・日用品。' },
 }
