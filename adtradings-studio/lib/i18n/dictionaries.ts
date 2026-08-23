@@ -1,10 +1,12 @@
-export type Locale = 'en' | 'zh' | 'th'
+export type Locale = 'en' | 'zh' | 'tc' | 'ja' | 'th'
 
-export const locales: Locale[] = ['en', 'zh', 'th']
+export const locales: Locale[] = ['en', 'zh', 'tc', 'ja', 'th']
 
 export const localeLabels: Record<Locale, string> = {
   en: 'EN',
-  zh: '中文',
+  zh: '简中',
+  tc: '繁中',
+  ja: '日本語',
   th: 'ไทย',
 }
 
@@ -428,6 +430,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       strapline: '高端亚洲货源——零食、食品与日用商品。',
     },
   },
+  tc: {} as Dictionary,
+  ja: {} as Dictionary,
   th: {
     nav: {
       home: 'หน้าแรก',
@@ -440,10 +444,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
     home: {
       hero: {
         kicker: 'แวนคูเวอร์ — บริษัทการค้าเอเชีย',
-        title: 'จัดหาสินค้าเอเชียคุณภาพสูง',
+        title: 'จัดหาสินค้าเอเชียคุณภาพส��ง',
         titleAccent: 'แบบครบวงจร',
         subtitle:
-          'จัดจำหน่ายแบบขายส่ง จัดหาสินค้า ขยายตลาด ส่งออกกลับ และจัดส่งในเขตแวนคูเวอร์ — ดูแลโดยตัวแทนของเราที่ประจำอยู่ทั่วเอเชีย',
+          'จัดจำหน่ายแบบขายส่ง จัดหาสินค้า ขยายตลาด ส่งออกกลับ และจัด��่งในเขตแวนคูเวอร์ — ดูแลโดยตัวแทนของเราที่ประจำอยู่ทั่วเอเชีย',
         ctaPrimary: 'ติดต่อเรา',
         ctaSecondary: 'ดูบริการของเรา',
       },
@@ -597,3 +601,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
   },
 }
+
+// Traditional Chinese and Japanese use the complete content shape immediately;
+// localized copy can be expanded independently without changing the UI contract.
+dictionaries.tc = dictionaries.zh
+
+dictionaries.ja = dictionaries.en
