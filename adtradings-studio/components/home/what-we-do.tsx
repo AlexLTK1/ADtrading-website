@@ -52,7 +52,7 @@ export function WhatWeDo() {
                   event.currentTarget.currentTime = 0.5
                 }
               }}
-              className="h-full w-full scale-[1.3] object-cover object-center"
+              className="h-full w-full scale-[1.5] object-cover object-center"
             >
               <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
