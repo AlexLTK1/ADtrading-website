@@ -25,8 +25,8 @@ export function WhyUs() {
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
-      <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:gap-20">
-        <div className="order-1 flex flex-col md:order-2 md:h-[560px]">
+      <div className="grid gap-14 md:grid-cols-[1.1fr_1fr] md:gap-20">
+        <div className="order-2 flex flex-col md:order-2 md:h-[560px]">
           {t.home.whyUs.items.map((point, i) => (
             <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
               <div
