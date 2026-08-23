@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Kicker } from '@/components/ui/kicker'
@@ -9,22 +9,11 @@ import { ScrollReveal } from '@/components/scroll-reveal'
 
 export function WhatWeDo() {
   const { t } = useLocale()
+  const [videoReady, setVideoReady] = useState(false)
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid items-stretch gap-10 md:grid-cols-2 md:gap-0">
-        <ScrollReveal variant="left" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
-          <div className="clip-diagonal-r absolute inset-0">
-            <Image
-              src="/images/warehouse.png"
-              alt="Interior of a modern distribution warehouse"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-primary/15" />
-          </div>
-        </ScrollReveal>
         <div className="flex flex-col justify-center px-4 py-6 md:px-14 md:py-10">
           <ScrollReveal delay={80}>
             <Kicker className="w-fit">{t.home.whatWeDo.kicker}</Kicker>
@@ -49,6 +38,41 @@ export function WhatWeDo() {
             </Link>
           </ScrollReveal>
         </div>
+        <ScrollReveal variant="right" className="relative min-h-[320px] overflow-hidden md:min-h-[520px]">
+          <div className="clip-diagonal-r absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              onLoadedMetadata={(event) => {
+                event.currentTarget.pause()
+                event.currentTarget.currentTime = 0.5
+              }}
+              onLoadedData={(event) => {
+                event.currentTarget.pause()
+                event.currentTarget.currentTime = 0.5
+              }}
+              onSeeked={(event) => {
+                if (!videoReady) {
+                  event.currentTarget.play().catch(() => {})
+                  setVideoReady(true)
+                }
+              }}
+              onTimeUpdate={(event) => {
+                if (event.currentTarget.currentTime < 0.5) {
+                  event.currentTarget.currentTime = 0.5
+                }
+              }}
+              className={`h-full w-full scale-[1.5] object-cover object-center transition-opacity duration-200 ${videoReady ? 'visible opacity-100' : 'invisible opacity-0'}`}
+            >
+              <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
+            </video>
+            <div className="absolute inset-0 bg-primary/15" />
+            <span className="sr-only">Video attribution: Anibal Trejo, CC BY 3.0, via Wikimedia Commons</span>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
