@@ -114,4 +114,9 @@
   .clip-panel-l {
     clip-path: polygon(0 0, 72% 0, 100% 100%, 0 100%);
   }
+
+  /* Diagonal wedge — top-left backdrop panel behind logo/nav on photographic heroes */
+  .clip-wedge-l {
+    clip-path: polygon(0 0, 42% 0, 0 100%);
+  }
 }

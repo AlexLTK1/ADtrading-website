@@ -22,6 +22,11 @@ export function SiteHeader() {
     { href: '/about', label: t.nav.about },
   ]
 
+  // The homepage hero is a full-bleed photo with a diagonal white panel only
+  // under the logo — so the nav floats transparently over the photo until scrolled.
+  const isHome = pathname === '/'
+  const floating = isHome && !scrolled && !open
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
@@ -36,18 +41,31 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors duration-300',
-        scrolled || open
-          ? 'border-border bg-background/95'
-          : 'border-transparent bg-background/80',
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+        floating
+          ? 'border-transparent bg-transparent'
+          : scrolled || open
+            ? 'border-border bg-background/95 backdrop-blur-md'
+            : 'border-transparent bg-background/80 backdrop-blur-md',
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" className="flex items-center gap-2.5 text-foreground">
-          <span className="clip-corner-sm flex size-8 items-center justify-center bg-primary font-mono text-xs font-semibold text-primary-foreground">
-            AD
-          </span>
-          <span className="text-base font-semibold tracking-tight">
+        {/* The logo always sits on the opaque white wedge panel (never directly on
+            the hero photo), so its colors stay constant regardless of scroll state. */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <svg viewBox="0 0 36 36" className="size-9 shrink-0" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="34" height="34" className="fill-primary" />
+            <path d="M1 1 L35 1 L1 35 Z" className="fill-accent" />
+            <text
+              x="24"
+              y="26"
+              textAnchor="middle"
+              className="fill-primary-foreground font-mono text-[13px] font-semibold"
+            >
+              AD
+            </text>
+          </svg>
+          <span className="text-base font-semibold tracking-tight text-foreground">
             Asia<span className="text-accent">Direct</span>
           </span>
         </Link>
@@ -58,11 +76,21 @@ export function SiteHeader() {
               key={link.href}
               href={link.href}
               className={cn(
-                'relative py-1 text-sm font-medium tracking-wide transition-colors hover:text-foreground',
+                'relative py-1 text-sm font-medium tracking-wide transition-colors',
                 'after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100',
-                pathname === link.href
-                  ? 'text-foreground after:scale-x-100'
-                  : 'text-muted-foreground',
+                floating
+                  ? cn(
+                      'hover:text-primary-foreground',
+                      pathname === link.href
+                        ? 'text-primary-foreground after:scale-x-100'
+                        : 'text-primary-foreground/80',
+                    )
+                  : cn(
+                      'hover:text-foreground',
+                      pathname === link.href
+                        ? 'text-foreground after:scale-x-100'
+                        : 'text-muted-foreground',
+                    ),
               )}
             >
               {link.label}
@@ -74,7 +102,11 @@ export function SiteHeader() {
           <div className="hidden items-center gap-1 font-mono text-xs tracking-wider uppercase md:flex">
             {locales.map((loc, i) => (
               <span key={loc} className="flex items-center">
-                {i > 0 && <span className="mx-1.5 text-border">/</span>}
+                {i > 0 && (
+                  <span className={cn('mx-1.5', floating ? 'text-primary-foreground/30' : 'text-border')}>
+                    /
+                  </span>
+                )}
                 <button
                   type="button"
                   onClick={() => setLocale(loc)}
@@ -83,7 +115,9 @@ export function SiteHeader() {
                     'transition-colors',
                     locale === loc
                       ? 'text-accent'
-                      : 'text-muted-foreground hover:text-foreground',
+                      : floating
+                        ? 'text-primary-foreground/80 hover:text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground',
                   )}
                 >
                   {localeLabels[loc]}
@@ -91,13 +125,21 @@ export function SiteHeader() {
               </span>
             ))}
           </div>
-          <Button render={<Link href="/contact" />} size="sm" className="hidden md:inline-flex">
+          <Button
+            render={<Link href="/contact" />}
+            size="sm"
+            variant={floating ? 'inverse' : 'default'}
+            className="hidden md:inline-flex"
+          >
             {t.nav.getInTouch}
           </Button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center text-foreground md:hidden"
+            className={cn(
+              'inline-flex h-9 w-9 items-center justify-center md:hidden',
+              floating ? 'text-primary-foreground' : 'text-foreground',
+            )}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
