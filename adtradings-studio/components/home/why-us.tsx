@@ -64,11 +64,11 @@ export function WhyUs() {
             </ScrollReveal>
           </div>
 
-          <div className="order-1 flex flex-col md:order-2 md:mt-8 md:min-h-0 md:flex-1">
+          <div className="order-1 mt-10 flex flex-col md:order-2 md:mt-8 md:min-h-0 md:flex-1">
           {t.home.whyUs.items.map((point, i) => (
             <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0 md:min-h-0 md:flex-1 md:basis-0">
               <div
-                className={`group relative z-0 flex w-full min-w-0 gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:h-full md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
+                className={`group relative z-0 flex w-full min-w-0 items-center gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:h-full md:px-10 ${i === 0 ? 'border-t-0' : ''}`}
               >
                 <div
                   className="absolute inset-0 z-0 bg-cover bg-center opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
