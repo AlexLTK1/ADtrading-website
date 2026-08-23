@@ -53,7 +53,7 @@ export function WhyUs() {
         </ScrollReveal>
 
         <div className="order-2 flex min-h-0 flex-col md:h-[560px]">
-          <div className="order-2 mt-12 md:order-1 md:mt-0">
+          <div className="order-1 mt-12 md:order-1 md:mt-0">
             <ScrollReveal>
               <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
             </ScrollReveal>
@@ -64,14 +64,14 @@ export function WhyUs() {
             </ScrollReveal>
           </div>
 
-          <div className="order-1 flex min-h-0 flex-1 flex-col md:order-2 md:mt-8">
+          <div className="order-1 flex flex-col md:order-2 md:mt-8 md:min-h-0 md:flex-1">
           {t.home.whyUs.items.map((point, i) => (
-            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
+            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0 md:min-h-0 md:flex-1 md:basis-0">
               <div
-                className={`group relative z-0 flex h-full w-full gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
+                className={`group relative z-0 flex w-full min-w-0 gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:h-full md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
               >
                 <div
-                  className="absolute inset-0 z-0 scale-105 bg-cover bg-center opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+                  className="absolute inset-0 z-0 bg-cover bg-center opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
                   style={{ backgroundImage: `url(${POINT_IMAGES[i % POINT_IMAGES.length]})` }}
                 />
                 <div className="absolute inset-0 z-0 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/75" />
