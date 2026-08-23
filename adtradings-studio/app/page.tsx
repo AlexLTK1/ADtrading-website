@@ -15,8 +15,8 @@ export default function HomePage() {
     <main>
       <HomeHero />
       <CountryMarquee />
-      <WhyUs />
       <WhatWeDo />
+      <WhyUs />
       <ServicesPreview />
       <CtaBand
         title={t.home.cta.title}
