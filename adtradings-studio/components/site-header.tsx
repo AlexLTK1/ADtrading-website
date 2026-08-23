@@ -42,11 +42,7 @@ export function SiteHeader() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
-        floating
-          ? 'border-transparent bg-transparent'
-          : scrolled || open
-            ? 'border-border bg-background/95 backdrop-blur-md'
-            : 'border-transparent bg-background/80 backdrop-blur-md',
+        'border-transparent bg-primary',
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
@@ -78,19 +74,9 @@ export function SiteHeader() {
               className={cn(
                 'relative py-1 text-sm font-medium tracking-wide transition-colors',
                 'after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100',
-                floating
-                  ? cn(
-                      'hover:text-primary-foreground',
-                      pathname === link.href
-                        ? 'text-primary-foreground after:scale-x-100'
-                        : 'text-primary-foreground/80',
-                    )
-                  : cn(
-                      'hover:text-foreground',
-                      pathname === link.href
-                        ? 'text-foreground after:scale-x-100'
-                        : 'text-muted-foreground',
-                    ),
+                pathname === link.href
+                  ? 'text-primary-foreground after:scale-x-100'
+                  : 'text-primary-foreground/80 hover:text-primary-foreground',
               )}
             >
               {link.label}
