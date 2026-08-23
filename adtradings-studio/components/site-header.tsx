@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const links = [
   { href: '/', label: 'Home' },
@@ -39,11 +40,13 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link
-          href="/"
-          className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-foreground"
-        >
-          Asia<span className="text-primary">Direct</span>
+        <Link href="/" className="flex items-center gap-2 text-foreground">
+          <span className="flex size-8 items-center justify-center rounded-full bg-primary font-mono text-xs font-semibold text-primary-foreground">
+            AD
+          </span>
+          <span className="text-base font-semibold tracking-tight">
+            Asia<span className="text-primary">Direct</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -52,7 +55,7 @@ export function SiteHeader() {
               key={link.href}
               href={link.href}
               className={cn(
-                'font-mono text-xs uppercase tracking-[0.15em] transition-colors hover:text-primary',
+                'text-sm font-medium transition-colors hover:text-primary',
                 pathname === link.href ? 'text-primary' : 'text-muted-foreground',
               )}
             >
@@ -62,12 +65,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="hidden rounded-sm border border-primary/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground md:inline-block"
-          >
+          <Button render={<Link href="/contact" />} size="sm" className="hidden md:inline-flex">
             Get in touch
-          </Link>
+          </Button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -87,19 +87,16 @@ export function SiteHeader() {
               key={link.href}
               href={link.href}
               className={cn(
-                'py-3 font-mono text-sm uppercase tracking-[0.15em]',
+                'py-3 text-base font-medium',
                 pathname === link.href ? 'text-primary' : 'text-muted-foreground',
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="mt-3 rounded-sm border border-primary/60 px-4 py-3 text-center font-mono text-sm uppercase tracking-[0.15em] text-primary"
-          >
+          <Button render={<Link href="/contact" />} className="mt-3 w-full">
             Get in touch
-          </Link>
+          </Button>
         </nav>
       )}
     </header>
