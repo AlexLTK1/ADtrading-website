@@ -42,7 +42,7 @@ export function SiteHeader() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
-        'border-transparent bg-primary',
+        floating ? 'border-transparent bg-transparent' : 'border-border bg-primary',
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">

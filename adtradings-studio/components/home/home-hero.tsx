@@ -32,33 +32,32 @@ export function HomeHero() {
       <div className="absolute inset-y-0 left-0 w-[42%] bg-primary/25 [clip-path:polygon(0_0,42%_0,100%_100%,0_100%)]" />
       <div className="absolute top-0 right-[8%] hidden h-1/3 w-px bg-accent/60 md:block" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pt-32 pb-14 md:px-8 md:pb-20">
-        <Kicker tone="inverse" className="w-fit">
-          {t.home.hero.kicker}
-        </Kicker>
-        <h1 className="mt-6 max-w-3xl text-balance text-4xl leading-[1.05] font-semibold tracking-tight text-primary-foreground sm:text-5xl md:text-7xl lg:text-[5.5rem]">
-          {t.home.hero.title} <span className="text-highlight">{t.home.hero.titleAccent}</span>
-        </h1>
-
-        <div className="clip-corner mt-8 max-w-md bg-background px-6 py-5 md:mt-10">
-          <p className="text-pretty text-sm leading-relaxed text-foreground md:text-base">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
+        <div className="max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+          <Kicker tone="inverse" className="w-fit">
+            {t.home.hero.kicker}
+          </Kicker>
+          <h1 className="mt-5 max-w-3xl text-balance text-5xl leading-[0.98] font-semibold tracking-tight text-primary-foreground sm:text-6xl md:text-8xl lg:text-[6.5rem]">
+            {t.home.hero.title} <span className="text-highlight">{t.home.hero.titleAccent}</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-primary-foreground md:text-xl">
             {t.home.hero.subtitle}
           </p>
-        </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Button render={<Link href="/contact" />} size="xl" variant="inverse">
-            {t.home.hero.ctaPrimary}
-            <ArrowUpRight data-icon="inline-end" />
-          </Button>
-          <Button
-            render={<Link href="/services" />}
-            size="xl"
-            variant="outline"
-            className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:border-accent hover:bg-accent hover:text-accent-foreground"
-          >
-            {t.home.hero.ctaSecondary}
-          </Button>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Button render={<Link href="/contact" />} size="xl" variant="inverse">
+              {t.home.hero.ctaPrimary}
+              <ArrowUpRight data-icon="inline-end" />
+            </Button>
+            <Button
+              render={<Link href="/services" />}
+              size="xl"
+              variant="outline"
+              className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:border-accent hover:bg-accent hover:text-accent-foreground"
+            >
+              {t.home.hero.ctaSecondary}
+            </Button>
+          </div>
         </div>
       </div>
     </section>
