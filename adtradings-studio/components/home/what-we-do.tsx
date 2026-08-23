@@ -47,18 +47,25 @@ export function WhatWeDo() {
               playsInline
               preload="metadata"
               onLoadedMetadata={(event) => {
+                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
               }}
-              onCanPlay={(event) => {
+              onLoadedData={(event) => {
+                event.currentTarget.pause()
                 event.currentTarget.currentTime = 0.5
               }}
-              onSeeked={() => setVideoReady(true)}
+              onSeeked={(event) => {
+                if (!videoReady) {
+                  event.currentTarget.play().catch(() => {})
+                  setVideoReady(true)
+                }
+              }}
               onTimeUpdate={(event) => {
                 if (event.currentTarget.currentTime < 0.5) {
                   event.currentTarget.currentTime = 0.5
                 }
               }}
-              className={`h-full w-full scale-[1.5] object-cover object-center transition-opacity duration-200 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              className={`h-full w-full scale-[1.5] object-cover object-center transition-opacity duration-200 ${videoReady ? 'visible opacity-100' : 'invisible opacity-0'}`}
             >
               <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
