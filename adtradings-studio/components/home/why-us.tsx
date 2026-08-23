@@ -1,16 +1,19 @@
+import { MapPinned, ShieldCheck, Users } from 'lucide-react'
+import { Kicker } from '@/components/ui/kicker'
+
 const points = [
   {
-    n: '01',
+    icon: MapPinned,
     title: 'Representatives on the ground',
     body: 'Our representatives across Asia evaluate every supplier in person, ensuring that what arrives in Vancouver meets the exact specifications you approved.',
   },
   {
-    n: '02',
+    icon: Users,
     title: 'A single point of accountability',
     body: 'Sourcing, ocean freight, customs clearance, bilingual labelling and final delivery are managed by one dedicated team — a seamless process from origin to destination, with no hand-offs and no gaps.',
   },
   {
-    n: '03',
+    icon: ShieldCheck,
     title: 'Compliance by design',
     body: 'Every shipment is labelled and documented to CFIA and FDA standards prior to departure, ensuring smooth customs clearance and a predictable path to market.',
   },
@@ -21,10 +24,8 @@ export function WhyUs() {
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:gap-20">
         <div className="md:sticky md:top-28 md:self-start">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-            Why buyers stay with us
-          </p>
-          <h2 className="mt-6 text-balance font-mono text-4xl font-medium leading-[1.05] tracking-tight md:text-5xl">
+          <Kicker className="w-fit">Why buyers stay with us</Kicker>
+          <h2 className="mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl">
             A trade house, not a marketplace.
           </h2>
           <p className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
@@ -35,20 +36,26 @@ export function WhyUs() {
           </p>
         </div>
 
-        <div className="flex flex-col divide-y divide-border border-t border-border">
-          {points.map((point) => (
-            <div key={point.n} className="flex gap-6 py-9 md:gap-8">
-              <span className="font-mono text-sm font-medium text-accent">{point.n}</span>
-              <div>
-                <h3 className="font-mono text-xl font-medium tracking-tight md:text-2xl">
-                  {point.title}
-                </h3>
-                <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                  {point.body}
-                </p>
+        <div className="flex flex-col gap-5">
+          {points.map((point) => {
+            const Icon = point.icon
+            return (
+              <div
+                key={point.title}
+                className="flex gap-5 rounded-2xl border border-border bg-card p-7 shadow-sm"
+              >
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Icon className="size-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight">{point.title}</h3>
+                  <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+                    {point.body}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

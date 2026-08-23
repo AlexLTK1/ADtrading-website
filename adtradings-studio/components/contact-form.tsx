@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react'
 import { ArrowUpRight, Check, AlertCircle, Loader2 } from 'lucide-react'
 import { submitInquiry } from '@/app/actions'
+import { Button } from '@/components/ui/button'
 
 const inquiryTypes = [
   'B2B wholesale supply',
@@ -13,8 +14,8 @@ const inquiryTypes = [
 ]
 
 const fieldClass =
-  'w-full rounded-sm border border-input bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-primary'
-const labelClass = 'font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground'
+  'w-full rounded-xl border border-input bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/15'
+const labelClass = 'text-sm font-medium text-foreground'
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -37,15 +38,15 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-start rounded-sm border border-border bg-card p-8 md:p-10">
+      <div className="flex flex-col items-start rounded-2xl border border-border bg-card p-8 shadow-sm md:p-10">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
           <Check className="h-6 w-6" />
         </div>
-        <h2 className="mt-6 font-mono text-2xl font-medium tracking-tight">Inquiry received.</h2>
+        <h2 className="mt-6 text-2xl font-semibold tracking-tight">Inquiry received.</h2>
         <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
           Thank you — a consultant will reply within one business day. For anything urgent, call us
           at{' '}
-          <a href="tel:+17783215858" className="text-primary">
+          <a href="tel:+17783215858" className="font-medium text-primary">
             +1 (778) 321-5858
           </a>
           .
@@ -56,7 +57,7 @@ export function ContactForm() {
             setSubmitted(false)
             setError(null)
           }}
-          className="mt-8 font-mono text-sm uppercase tracking-[0.15em] text-primary"
+          className="mt-8 text-sm font-semibold text-primary"
         >
           Send another inquiry
         </button>
@@ -147,30 +148,26 @@ export function ContactForm() {
       {error && (
         <div
           role="alert"
-          className="flex items-start gap-2 rounded-sm border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+          className="flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
         >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={isPending}
-        className="group inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-4 font-mono text-sm uppercase tracking-[0.15em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70"
-      >
+      <Button type="submit" size="lg" disabled={isPending} className="group w-full sm:w-fit">
         {isPending ? (
           <>
             Sending
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="size-4 animate-spin" />
           </>
         ) : (
           <>
             Start an inquiry
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </>
         )}
-      </button>
+      </Button>
     </form>
   )
 }
