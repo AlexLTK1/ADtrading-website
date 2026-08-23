@@ -26,8 +26,45 @@ export function WhyUs() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:gap-20">
-        <div className="order-2 md:sticky md:top-28 md:order-2 md:h-[560px] md:self-start">
-          <ScrollReveal className="relative h-[280px] overflow-hidden md:h-full">
+        <div className="order-2 flex flex-col md:order-1 md:h-[560px]">
+          {t.home.whyUs.items.map((point, i) => (
+            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
+              <div
+                className={`group relative z-0 flex h-full w-full gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
+              >
+                <div
+                  className="absolute inset-0 z-0 scale-105 bg-cover bg-center opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+                  style={{ backgroundImage: `url(${POINT_IMAGES[i % POINT_IMAGES.length]})` }}
+                />
+                <div className="absolute inset-0 z-0 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/75" />
+                <span className="relative z-10 shrink-0 font-mono text-sm text-accent transition-colors duration-500 group-hover:text-highlight">
+                  {point.n}
+                </span>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-semibold tracking-tight transition-colors duration-500 group-hover:text-primary-foreground">
+                    {point.title}
+                  </h3>
+                  <p className="mt-3 max-w-lg text-pretty leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/85">
+                    {point.body}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="order-1 md:order-2 md:sticky md:top-28 md:h-[560px] md:self-start">
+          <div className="mt-10 md:mt-0">
+            <ScrollReveal>
+              <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="mt-6 text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl">
+                {t.home.whyUs.title}
+              </h2>
+            </ScrollReveal>
+          </div>
+          <ScrollReveal className="relative mt-10 h-[280px] overflow-hidden md:mt-14 md:h-[560px]">
             <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
               <video
                 autoPlay
@@ -55,45 +92,8 @@ export function WhyUs() {
               <span className="sr-only">Video attribution: PaSt Photo, CC BY 3.0, via Wikimedia Commons</span>
             </div>
           </ScrollReveal>
-
-          <div className="mt-10">
-            <ScrollReveal>
-              <Kicker className="w-fit">{t.home.whyUs.kicker}</Kicker>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <h2 className="mt-6 text-balance text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl">
-                {t.home.whyUs.title}
-              </h2>
-            </ScrollReveal>
-          </div>
         </div>
 
-        <div className="flex flex-col md:h-[560px]">
-          {t.home.whyUs.items.map((point, i) => (
-            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
-              <div
-                className={`group relative flex h-full w-full gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
-              >
-                <div
-                  className="absolute inset-0 -z-10 scale-105 bg-cover bg-center opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
-                  style={{ backgroundImage: `url(${POINT_IMAGES[i % POINT_IMAGES.length]})` }}
-                />
-                <div className="absolute inset-0 -z-10 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/75" />
-                <span className="relative shrink-0 font-mono text-sm text-accent transition-colors duration-500 group-hover:text-highlight">
-                  {point.n}
-                </span>
-                <div className="relative">
-                  <h3 className="text-xl font-semibold tracking-tight transition-colors duration-500 group-hover:text-primary-foreground">
-                    {point.title}
-                  </h3>
-                  <p className="mt-3 max-w-lg text-pretty leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/85">
-                    {point.body}
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
       </div>
     </section>
   )
