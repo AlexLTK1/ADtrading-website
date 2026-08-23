@@ -25,7 +25,7 @@ export function PageHero({ label, title, intro, image, imageAlt }: PageHeroProps
       <div className="clip-wedge-l absolute inset-y-0 left-0 z-10 w-[24%] bg-white/95" />
       <div className="absolute inset-x-0 bottom-0 z-20 h-px bg-white/70" />
 
-      <div className="relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center px-5 pt-20 pb-12 text-center md:px-8 md:pt-24 md:pb-14">
+      <div className="relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center px-5 pt-28 pb-12 text-center md:px-8 md:pt-32 md:pb-14 lg:pt-36">
         <Kicker tone="inverse" className="mb-4 text-white/85">
           {label}
         </Kicker>

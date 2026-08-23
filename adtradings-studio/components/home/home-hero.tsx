@@ -31,7 +31,7 @@ export function HomeHero() {
           to the fixed header above, so no diagonal panel cuts into this photo. */}
       <div className="absolute top-0 right-[8%] hidden h-1/3 w-px bg-accent/60 md:block" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-28 md:px-8 md:pb-20 md:pt-32 lg:pt-36">
         <div className="max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
           <Kicker tone="inverse" className="w-fit">
             {t.home.hero.kicker}
