@@ -45,7 +45,7 @@ export function SiteHeader() {
         floating ? 'border-transparent bg-transparent' : 'border-border bg-primary',
       )}
     >
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         {/* On the homepage the logo is anchored to the hero wedge, rather than the
             centered content container, so it stays locked to the upper-left panel. */}
         <Link
@@ -72,7 +72,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:ml-auto md:flex">
+        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-4 lg:ml-auto xl:flex xl:gap-8">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -90,8 +90,8 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden items-center gap-1 font-mono text-xs tracking-wider uppercase md:flex">
+        <div className="flex shrink-0 items-center gap-3 xl:gap-4">
+          <div className="hidden shrink-0 items-center gap-1 whitespace-nowrap font-mono text-xs tracking-wider uppercase xl:flex">
             {locales.map((loc, i) => (
               <span key={loc} className="flex items-center">
                 {i > 0 && (
@@ -121,7 +121,7 @@ export function SiteHeader() {
             render={<Link href="/contact" />}
             size="sm"
             variant={floating ? 'inverse' : 'default'}
-            className="hidden md:inline-flex"
+            className="hidden shrink-0 xl:inline-flex"
           >
             {t.nav.getInTouch}
           </Button>
@@ -129,7 +129,7 @@ export function SiteHeader() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             className={cn(
-              'inline-flex h-9 w-9 items-center justify-center md:hidden',
+              'inline-flex h-9 w-9 shrink-0 items-center justify-center xl:hidden',
               floating ? 'text-primary-foreground' : 'text-foreground',
             )}
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -141,7 +141,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-border px-5 pb-6 pt-2 md:hidden">
+        <nav className="flex flex-col gap-1 border-t border-border px-5 pb-6 pt-2 xl:hidden">
           {links.map((link) => (
             <Link
               key={link.href}
