@@ -11,8 +11,10 @@ const POINT_IMAGES = [
 ]
 
 // The source clip opens with a ~7s watermarked title card; skip straight to
-// the clean footage and loop within that clean range only.
-const CLIP_START = 8
+// the clean footage and loop within that clean range only. An extra 0.5s is
+// trimmed from the loop-in point to avoid a visible jump/flash each time the
+// video restarts.
+const CLIP_START = 8.5
 const CLIP_END = 40
 
 export function WhyUs() {
@@ -64,11 +66,11 @@ export function WhyUs() {
             </ScrollReveal>
           </div>
 
-          <div className="order-1 mt-10 flex flex-col md:order-2 md:mt-8 md:min-h-0 md:flex-1">
+          <div className="order-1 mt-10 flex flex-col justify-center md:order-2 md:mt-8 md:min-h-0 md:flex-1">
           {t.home.whyUs.items.map((point, i) => (
-            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0 md:min-h-0 md:flex-1 md:basis-0">
+            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex w-full min-w-0">
               <div
-                className={`group relative z-0 flex w-full min-w-0 items-start gap-6 overflow-hidden border-t border-border px-8 pt-8 pb-12 transition-colors duration-500 md:h-full md:px-10 md:pt-8 md:pb-14 ${i === 0 ? 'border-t-0' : ''}`}
+                className={`group relative z-0 flex w-full min-w-0 items-start gap-6 border-t border-border px-8 py-10 transition-colors duration-500 md:px-10 md:py-12 ${i === 0 ? 'border-t-0' : ''}`}
               >
                 <div
                   className="absolute inset-0 z-0 bg-cover bg-center opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
