@@ -42,7 +42,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 bg-primary transition-[height] duration-300 ease-out',
+        'fixed inset-x-0 top-0 z-50 isolate bg-primary transition-[height] duration-300 ease-out',
         tall ? 'h-24 md:h-28 lg:h-32' : 'h-16',
       )}
     >
