@@ -44,9 +44,17 @@ export function WhatWeDo() {
               muted
               playsInline
               preload="metadata"
+              onLoadedMetadata={(event) => {
+                event.currentTarget.currentTime = 0.5
+              }}
+              onTimeUpdate={(event) => {
+                if (event.currentTarget.currentTime < 0.5) {
+                  event.currentTarget.currentTime = 0.5
+                }
+              }}
               className="h-full w-full scale-[1.3] object-cover object-center"
             >
-              <source src="/videos/port-timelapse.webm" type="video/webm" />
+              <source src="/videos/port-timelapse.webm#t=0.5" type="video/webm" />
             </video>
             <div className="absolute inset-0 bg-primary/15" />
             <span className="sr-only">Video attribution: Anibal Trejo, CC BY 3.0, via Wikimedia Commons</span>
