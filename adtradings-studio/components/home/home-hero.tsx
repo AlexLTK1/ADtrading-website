@@ -27,7 +27,14 @@ export function HomeHero() {
       <div className="absolute inset-0 bg-accent/70 mix-blend-multiply" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/20 to-transparent" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
+      <div aria-hidden="true" className="hero-orbit pointer-events-none absolute right-[-8rem] top-1/2 z-0 h-[22rem] w-[22rem] -translate-y-1/2 opacity-45 sm:right-[-4rem] sm:h-[28rem] sm:w-[28rem] lg:right-[7%] lg:h-[34rem] lg:w-[34rem]">
+        <span className="hero-orbit__ring hero-orbit__ring--outer" />
+        <span className="hero-orbit__ring hero-orbit__ring--middle" />
+        <span className="hero-orbit__ring hero-orbit__ring--inner" />
+        <span className="hero-orbit__core" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pb-14 pt-32 md:px-8 md:pb-20">
         <div className="max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
           <Kicker tone="inverse" className="w-fit">
             {t.home.hero.kicker}
