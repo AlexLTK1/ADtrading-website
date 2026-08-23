@@ -33,69 +33,39 @@ export function SiteHeader() {
     setOpen(false)
   }, [pathname])
 
-  // Reproduces the TOKI header composition: a large 45° diagonal color block is a
-  // structural part of the HEADER only (never the hero/banner below it), with the
-  // logo anchored inside that diagonal. Scrolling collapses the whole thing into a
-  // compact standard sticky bar and the diagonal disappears.
-  const tall = !scrolled
-
+  // Reproduces the live TOKI header behavior: at the top of the page the header is
+  // completely transparent and floats over the hero's own diagonal artwork below it.
+  // After scrolling, it becomes a solid rectangular navy bar (no diagonal, no wedge)
+  // fixed to the top of the viewport. The diagonal geometry lives in the hero
+  // sections themselves (HomeHero / PageHero), never in the header.
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 isolate bg-primary transition-[height] duration-300 ease-out',
-        tall ? 'h-24 md:h-28 lg:h-32' : 'h-16',
+        'fixed inset-x-0 top-0 z-50 flex h-16 items-center transition-colors duration-300 ease-out md:h-20',
+        scrolled ? 'bg-primary shadow-[0_2px_16px_rgba(6,31,42,0.25)]' : 'bg-transparent',
       )}
     >
-      {/* Diagonal geometric block — structural part of the header, sized relative to
-          viewport width (clamp) so it never relies on fixed pixel breakpoints. */}
-      <div
-        aria-hidden="true"
-        className={cn(
-          'absolute inset-y-0 left-0 w-[clamp(9.5rem,25vw,21rem)] bg-accent transition-[opacity,transform] duration-300 ease-out [clip-path:polygon(0_0,100%_0,0_100%)]',
-          tall ? 'opacity-100' : 'pointer-events-none -translate-x-6 opacity-0',
-        )}
-      />
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 md:px-8">
+        {/* Logo — dark mark on the light wedge while the header is transparent over
+            the hero; flips to a light mark once the header becomes a solid bar. */}
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <svg viewBox="0 0 36 36" className="size-8 shrink-0 md:size-9" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="34" height="34" className={scrolled ? 'fill-primary-foreground' : 'fill-primary'} />
+            <path d="M1 1 L35 1 L1 35 Z" className={scrolled ? 'fill-primary' : 'fill-accent'} />
+            <text
+              x="24"
+              y="26"
+              textAnchor="middle"
+              className={cn('font-mono text-[13px] font-semibold', scrolled ? 'fill-primary-foreground' : 'fill-accent')}
+            >
+              AD
+            </text>
+          </svg>
+          <span className={cn('hidden text-base font-semibold tracking-tight sm:inline', scrolled ? 'text-primary-foreground' : 'text-primary')}>
+            Asia<span className={scrolled ? 'text-highlight' : 'text-accent'}>Direct</span>
+          </span>
+        </Link>
 
-      {/* Logo — lives inside the diagonal at the top state, and reflows to the
-          standard inline position once the header collapses. */}
-      <Link
-        href="/"
-        className={cn(
-          'absolute inset-y-0 left-0 z-20 flex items-center gap-2 px-4 transition-[padding] duration-300 md:px-6 lg:px-8',
-          tall ? 'items-start pt-4 md:pt-5 lg:pt-6' : 'items-center',
-        )}
-      >
-        <svg viewBox="0 0 36 36" className="size-8 shrink-0 md:size-9" aria-hidden="true" focusable="false">
-          <rect x="1" y="1" width="34" height="34" className="fill-primary" />
-          <path d="M1 1 L35 1 L1 35 Z" className={tall ? 'fill-primary-foreground' : 'fill-accent'} />
-          <text
-            x="24"
-            y="26"
-            textAnchor="middle"
-            className={cn(
-              'font-mono text-[13px] font-semibold',
-              tall ? 'fill-accent' : 'fill-primary-foreground',
-            )}
-          >
-            AD
-          </text>
-        </svg>
-        <span
-          className={cn(
-            'hidden text-base font-semibold tracking-tight sm:inline',
-            tall ? 'text-primary-foreground' : 'text-primary-foreground',
-          )}
-        >
-          Asia<span className={tall ? 'text-primary' : 'text-accent'}>Direct</span>
-        </span>
-      </Link>
-
-      <div
-        className={cn(
-          'relative mx-auto flex h-full max-w-7xl items-center justify-end gap-4 pr-5 transition-[padding] duration-300 lg:pr-8',
-          tall ? 'pl-[clamp(9.5rem,25vw,21rem)]' : 'pl-5 lg:pl-8',
-        )}
-      >
         <nav className="hidden min-w-0 flex-1 items-center justify-end gap-1 xl:flex">
           {links.map((link) => (
             <Link
@@ -105,7 +75,7 @@ export function SiteHeader() {
                 'px-3.5 py-2 text-sm font-medium tracking-wide transition-colors',
                 pathname === link.href
                   ? 'bg-accent text-accent-foreground'
-                  : 'text-primary-foreground/85 hover:bg-primary-foreground/10 hover:text-primary-foreground',
+                  : 'text-primary-foreground/90 hover:bg-primary-foreground/10 hover:text-primary-foreground',
               )}
             >
               {link.label}
@@ -144,7 +114,12 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-10 shrink-0 items-center justify-center border-2 border-primary-foreground bg-primary text-primary-foreground transition-colors hover:bg-highlight hover:text-primary xl:hidden"
+            className={cn(
+              'inline-flex size-10 shrink-0 items-center justify-center border-2 transition-colors xl:hidden',
+              scrolled
+                ? 'border-primary-foreground bg-primary text-primary-foreground hover:bg-highlight hover:text-primary'
+                : 'border-primary-foreground/90 bg-primary/20 text-primary-foreground backdrop-blur-sm hover:bg-highlight hover:text-primary',
+            )}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
