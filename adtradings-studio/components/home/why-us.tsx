@@ -14,7 +14,7 @@ const POINT_IMAGES = [
 // the clean footage and loop within that clean range only. An extra 0.5s is
 // trimmed from the loop-in point to avoid a visible jump/flash each time the
 // video restarts.
-const CLIP_START = 8.5
+const CLIP_START = 8.8
 const CLIP_END = 40
 
 export function WhyUs() {
