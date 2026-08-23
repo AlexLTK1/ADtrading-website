@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Kicker } from '@/components/ui/kicker'
 import { useLocale } from '@/lib/i18n/language-provider'
 import { ScrollReveal } from '@/components/scroll-reveal'
@@ -17,34 +18,41 @@ const CLIP_END = 40
 
 export function WhyUs() {
   const { t } = useLocale()
+  const [videoReady, setVideoReady] = useState(false)
+  const seekToCleanFrame = (video: HTMLVideoElement) => {
+    if (video.currentTime < CLIP_START) video.currentTime = CLIP_START
+  }
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-36">
       <div className="grid gap-14 md:grid-cols-[1fr_1.1fr] md:gap-20">
         <div className="md:sticky md:top-28 md:h-[560px] md:self-start">
           <ScrollReveal className="relative h-[280px] overflow-hidden md:h-full">
-            <div className="clip-diagonal-l absolute inset-0">
+            <div className="clip-diagonal-l absolute inset-0 overflow-hidden">
               <video
                 autoPlay
                 muted
                 playsInline
                 preload="auto"
-                className="h-full w-full object-cover"
-                onLoadedMetadata={(e) => {
-                  e.currentTarget.currentTime = CLIP_START
+                className={`h-full w-full scale-[1.22] object-cover object-center transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+                onLoadedMetadata={(e) => seekToCleanFrame(e.currentTarget)}
+                onLoadedData={(e) => seekToCleanFrame(e.currentTarget)}
+                onCanPlay={(e) => {
+                  seekToCleanFrame(e.currentTarget)
+                  setVideoReady(true)
                 }}
                 onTimeUpdate={(e) => {
                   if (e.currentTarget.currentTime >= CLIP_END) {
                     e.currentTarget.currentTime = CLIP_START
+                  } else if (e.currentTarget.currentTime < CLIP_START) {
+                    seekToCleanFrame(e.currentTarget)
                   }
                 }}
               >
                 <source src="/videos/ship-berthing.webm" type="video/webm" />
               </video>
               <div className="absolute inset-0 bg-primary/25" />
-              <span className="absolute bottom-3 left-4 text-[10px] font-medium tracking-wide text-primary-foreground/70">
-                Video: PaSt Photo, CC BY 3.0, via Wikimedia Commons
-              </span>
+              <span className="sr-only">Video attribution: PaSt Photo, CC BY 3.0, via Wikimedia Commons</span>
             </div>
           </ScrollReveal>
 
@@ -60,11 +68,11 @@ export function WhyUs() {
           </div>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col md:h-[560px]">
           {t.home.whyUs.items.map((point, i) => (
-            <ScrollReveal key={point.title} delay={i * 90} variant="right">
+            <ScrollReveal key={point.title} delay={i * 90} variant="right" className="flex min-h-0 flex-1">
               <div
-                className={`group relative flex gap-6 overflow-hidden border-t border-border px-6 py-8 transition-colors duration-500 ${i === 0 ? 'border-t-0 pt-0' : ''}`}
+                className={`group relative flex h-full w-full gap-6 overflow-hidden border-t border-border px-8 py-8 transition-colors duration-500 md:px-10 ${i === 0 ? 'border-t-0 pt-8' : ''}`}
               >
                 <div
                   className="absolute inset-0 -z-10 scale-105 bg-cover bg-center opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
